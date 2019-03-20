@@ -9,7 +9,7 @@
  * @author ricsi
  */
 public abstract class Moveable implements Element {
-    
+ 
     private Panda holdsPanda;
     private Tile tile;
     /**

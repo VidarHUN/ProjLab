@@ -9,6 +9,7 @@
  * @author ricsi
  */
 public interface Element {
+  
     /**
 	 * 
 	 * @param o

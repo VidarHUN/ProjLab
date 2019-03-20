@@ -9,7 +9,7 @@
  * @author ricsi
  */
 public class Exit implements Element {
-    
+  
     private Tile entrance;
     /**
 	 * 

@@ -9,5 +9,6 @@
  * @author ricsi
  */
 public interface Steppable {
+    
     void step();
 }

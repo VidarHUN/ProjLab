@@ -12,6 +12,7 @@ import java.util.List;
  * @author ricsi
  */
 public class Tile {
+    
     private List<Tile> neighbors;
     private List<Armchair> neighborChairs;
     private boolean piped;

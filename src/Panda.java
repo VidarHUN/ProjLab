@@ -9,7 +9,7 @@
  * @author ricsi
  */
 public abstract class Panda extends Moveable implements Steppable{
-    
+
     private Moveable heldByMoveable;
     private Controller controller;
     private boolean free = true;

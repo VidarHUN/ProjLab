@@ -9,6 +9,7 @@
  * @author ricsi
  */
 public class Armchair implements Element, Steppable{
+    
     private int countToDrop;
     private Tile tile;
     private SleepyPanda panda;

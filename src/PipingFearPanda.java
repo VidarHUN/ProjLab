@@ -9,6 +9,7 @@
  * @author ricsi
  */
 public class PipingFearPanda extends Panda{
+    
     public void jump() {
 		// TODO - implement PipingFearPanda.jump
 		throw new UnsupportedOperationException();

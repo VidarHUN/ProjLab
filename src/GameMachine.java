@@ -9,7 +9,7 @@
  * @author ricsi
  */
 public class GameMachine implements Element {
-    
+ 
     private Tile tile;
     
         public void invertJingled() {

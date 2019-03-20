@@ -9,6 +9,7 @@
  * @author ricsi
  */
 public class JingleFearPanda extends Panda {
+    
     public void fear() {
 		// TODO - implement JingleFearPanda.fear
 		throw new UnsupportedOperationException();

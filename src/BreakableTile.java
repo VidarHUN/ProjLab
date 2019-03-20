@@ -9,6 +9,7 @@
  * @author ricsi
  */
 public class BreakableTile extends Tile{
+    
     private int lifePoints = 20;
 
 	/**

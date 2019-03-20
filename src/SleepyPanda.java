@@ -9,6 +9,7 @@
  * @author ricsi
  */
 public class SleepyPanda extends Panda{
+    
     private boolean immune = false;
 	private int immuneTime = 0;
 
