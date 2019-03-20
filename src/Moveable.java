@@ -10,72 +10,68 @@
  */
 public abstract class Moveable implements Element {
  
-    private Panda holdsPanda;
+    protected Panda holdsPanda;
     private Tile tile;
     /**
 	 * 
 	 * @param idx
 	 */
 	public void move(int idx) {
-		// TODO - implement Moveable.move
-		throw new UnsupportedOperationException();
+                Tile oldTile = tile;
+		tile.getNeighbor(idx).accept(this);
+                if(holdsPanda != null) holdsPanda.follow(oldTile);
 	}
 
 	/**
 	 * 
 	 * @param o
 	 */
+        @Override
 	public abstract void hitBy(Orangutan o);
 
 	/**
 	 * 
 	 * @param p
 	 */
+        @Override
 	public abstract void hitBy(Panda p);
 
 	/**
 	 * 
 	 * @param e
 	 */
-	public void collideWith(Element e) {
-		// TODO - implement Moveable.collideWith
-		throw new UnsupportedOperationException();
-	}
+        @Override
+	public void collideWith(Element e) {}
 
 	/**
 	 * 
-	 * @param p
+	 * @param pnd
 	 */
-	public void setHoldsPanda(Panda p) {
-		// TODO - implement Moveable.setHoldsPanda
-		throw new UnsupportedOperationException();
+	public void setHoldsPanda(Panda pnd) {
+		holdsPanda = pnd;
 	}
 
 	/**
 	 * 
 	 * @param c
+     * @return int
 	 */
 	public int count(int c) {
-		// TODO - implement Moveable.count
-		throw new UnsupportedOperationException();
+		if(holdsPanda == null) return c;
+                else return holdsPanda.count(c + 1);
 	}
 
 	public Tile getTile() {
-		// TODO - implement Moveable.getTile
-		throw new UnsupportedOperationException();
+		return tile;
 	}
         
         public void setTile(Tile tl){
             tile = tl;
         }
 
-	public void fall() {
-		// TODO - implement Moveable.fall
-		throw new UnsupportedOperationException();
-	}
+	public abstract void fall();
 
 	public void leave() {
-		// TODO - implement Moveable.leave
-		throw new UnsupportedOperationException();
+		tile.remove();
 	}
 }
