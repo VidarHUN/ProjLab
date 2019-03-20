@@ -64,6 +64,10 @@ public abstract class Moveable implements Element {
 		// TODO - implement Moveable.getTile
 		throw new UnsupportedOperationException();
 	}
+        
+        public void setTile(Tile tl){
+            tile = tl;
+        }
 
 	public void fall() {
 		// TODO - implement Moveable.fall

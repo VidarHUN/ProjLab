@@ -1,37 +1,39 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author ricsi
- */
+
 public class Armchair implements Element, Steppable{
     
     private int countToDrop;
     private Tile tile;
     private SleepyPanda panda;
+    
+    
+    
 
-	public void drop() {
-		// TODO - implement Armchair.drop
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * 
+     * 
+     * Ez a metódus kidobja a pandát az Armchairből.
+     * 
+     */
+    public void drop() {
+            panda.setStatus(true);
+            tile.placeMoveableOnNeighbor(panda);
+    }
 
-	/**
-	 * 
-	 * @param sp
-	 */
-	public void gyereRam(SleepyPanda sp) {
-		// TODO - implement Armchair.gyereRam
-		throw new UnsupportedOperationException();
-	}
+    /**
+     * Ez a metódus beleteszi a SleepyPandát az Armchairbe, amelyik bele szeretne menni.
+     * 
+     * @param sp Az a panda amelyik aludni szeretne.
+     */
+    public void gyereRam(SleepyPanda sp) {
+            Tile tmp = new Tile();
+            sp.setTile(tmp);
+    }
 
-	public void step() {
-		// TODO - implement Armchair.step
-		throw new UnsupportedOperationException();
-	}
+    public void step() {
+            // TODO - implement Armchair.step
+            throw new UnsupportedOperationException();
+    }
 
     @Override
     public void hitBy(Orangutan o) {

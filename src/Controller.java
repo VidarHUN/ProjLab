@@ -1,39 +1,69 @@
 
-import java.util.List;
+import java.util.ArrayList;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author ricsi
- */
 public class Controller {
     
-    private Orangutan orangutan;
-    private List<Panda> pandas;
-    private List<Tile> tiles;
-    private List<Steppable> steppables;
+    private static final Controller INSTANCE = new Controller();
     
-    public void startGame() {
-		// TODO - implement Controller.startGame
-		throw new UnsupportedOperationException();
-	}
+    private boolean endGame;
+    
+    private Clock clock;
+    private Orangutan orangutan;
+    private ArrayList<Panda> pandas;
+    private ArrayList<Tile> tiles;
+    
+    private Controller(){}
+    
+    public Controller getInstance(){
+        return INSTANCE;
+    }
+    
+    public void setOrangutan(Orangutan ogtn){
+        orangutan = ogtn;
+    }
+    
+    public Orangutan getOrangutan(){return orangutan;}
+    
+    
+    public void startGame() { 
+        endGame = false;
+        try{
+            while(!endGame){
+                clock.tick();
+                if(pandas.isEmpty()) endGame();
+                Thread.sleep(2000);
+            }
+        } catch(InterruptedException e){
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Game Over!");
+    }
 
-	public void endGame() {
-		// TODO - implement Controller.endGame
-		throw new UnsupportedOperationException();
-	}
+    public void endGame() { 
+        endGame = true;
+    }
+    
+    public void setClock(Clock clk){
+        clock = clk;
+    }
+    
+    public Clock getClock(){
+        return clock;
+    }
+    
+    public void addTile(Tile tl){
+        tiles.add(tl);
+    }
+    
+    public ArrayList<Tile>getTiles(){
+        return tiles;
+    }
+    
+    public void addPanda(Panda pnd){
+        pandas.add(pnd);
+    }
 
-	/**
-	 * 
-	 * @param pnd
-	 */
-	public void remove(Panda pnd) {
-		// TODO - implement Controller.remove
-		throw new UnsupportedOperationException();
-	}
+    public void removePanda(Panda pnd) {
+        pandas.remove(pnd);
+    }
 }
