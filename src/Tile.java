@@ -1,3 +1,6 @@
+
+import java.util.List;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,8 +12,11 @@
  * @author ricsi
  */
 public class Tile {
+    private List<Tile> neighbors;
+    private List<Armchair> neighborChairs;
     private boolean piped;
-	private boolean jingled;
+    private boolean jingled;
+    private Element element;
 
 	public Moveable getMoveable() {
 		// TODO - implement Tile.getMoveable

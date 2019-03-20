@@ -8,7 +8,9 @@
  *
  * @author ricsi
  */
-public class Cupboard {
+public class Cupboard implements Element {
+    
+    private Cupboard pair;
     /**
 	 * 
 	 * @param o

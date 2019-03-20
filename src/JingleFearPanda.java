@@ -8,7 +8,7 @@
  *
  * @author ricsi
  */
-public class JingleFearPanda {
+public class JingleFearPanda extends Panda {
     public void fear() {
 		// TODO - implement JingleFearPanda.fear
 		throw new UnsupportedOperationException();
@@ -23,4 +23,9 @@ public class JingleFearPanda {
 		// TODO - implement JingleFearPanda.follow
 		throw new UnsupportedOperationException();
 	}
+
+    @Override
+    public void hitBy(Panda p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

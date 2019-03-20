@@ -8,7 +8,8 @@
  *
  * @author ricsi
  */
-public class ChocoMachine implements Element{
+public class ChocoMachine implements Element, Steppable{
+    private Tile tile;
     public void invertPiped() {
 		// TODO - implement ChocoMachine.invertPiped
 		throw new UnsupportedOperationException();

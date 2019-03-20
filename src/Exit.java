@@ -8,7 +8,9 @@
  *
  * @author ricsi
  */
-public class Exit {
+public class Exit implements Element {
+    
+    private Tile entrance;
     /**
 	 * 
 	 * @param e

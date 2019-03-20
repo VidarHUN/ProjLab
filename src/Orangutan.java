@@ -9,7 +9,9 @@
  * @author ricsi
  */
 public class Orangutan extends Moveable{
-    private int points;
+    
+    private Controller controller;
+    private int points = 0;
 
 	/**
 	 * 

@@ -8,8 +8,11 @@
  *
  * @author ricsi
  */
-public class GameMachine {
-    public void invertJingled() {
+public class GameMachine implements Element {
+    
+    private Tile tile;
+    
+        public void invertJingled() {
 		// TODO - implement GameMachine.invertJingled
 		throw new UnsupportedOperationException();
 	}
