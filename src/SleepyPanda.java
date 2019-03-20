@@ -11,24 +11,54 @@
 public class SleepyPanda extends Panda{
     
     private boolean immune = false;
-	private int immuneTime = 0;
+    private int immuneTime = 0;
 
 	/**
 	 * 
-	 * @param status
+	 * @param status: a beállítandó status értéke
 	 */
 	public void setStatus(boolean status) {
-		// TODO - implement SleepyPanda.setStatus
-		throw new UnsupportedOperationException();
+            immune = status;
+            if(status==true) { //ha immunissá válik, egyből beállítjuk annak az ideját is
+                immuneTime = 3;
+            }
 	}
 
 	public void step() {
-		// TODO - implement SleepyPanda.step
-		throw new UnsupportedOperationException();
+            if(immuneTime>0) { //először csökkentjük az immunitás idejét
+                immuneTime--;
+                if(immuneTime==0) { //ha 0 lesz, akkor elvesszük az immunitást
+                    this.setStatus(false);
+                }
+            }
+            if(getFree()==true) { //ha szabad a panda, akkor lép
+                move(pickRandomNeighbor());
+            }
+            checkChair();
 	}
+        
+        /**
+         * 
+         * @param t: a csempe, ahova lépnie kell a pandának
+         */
+        public void follow(Tile t) {
+            t.accept(this);
+            if(getHoldsPanda()!=null) {   //ha az adott pandát követi egy másik, akkor neki is meghívjuk a követési metódusát
+                getHoldsPanda().follow(t);
+            }
+            checkChair();
+	}
+        
+        //megnézi, hogy van-e szomszédos és üres fotel
+        public void checkChair() {
+            if(getTile().getFreeNeighborChair()!=null && immune==false) {   //ha van szomszédos üres fotel és nem immunis a panda, akkor beleül
+                getTile().getFreeNeighborChair().gyereRam(this);
+                setFree(false);
+            }
+        }
 
     @Override
     public void hitBy(Panda p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //még mindig semmi
     }
 }

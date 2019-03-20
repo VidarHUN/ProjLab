@@ -10,19 +10,33 @@
  */
 public class PipingFearPanda extends Panda{
     
-    public void jump() {
-		// TODO - implement PipingFearPanda.jump
-		throw new UnsupportedOperationException();
+        //a panda ha megijed ugrik egyet
+        public void jump() {
+            if(getTile().getPiped()==true) {   //megnézzük, hogy az adott csempe bármelyik szomszédja sípolt-e
+                getTile().loseLifePoint();   //ha igen és törékeny csempén állunk, akkor csökkentjük a csempre életpontjait
+            }
 	}
 
     @Override
 	public void step() {
-		// TODO - implement PipingFearPanda.step
-		throw new UnsupportedOperationException();
+            if(getFree()==true) {   //megnézzük, hogy szabad-e a panda, ha igen akkor léptetjük
+                move(pickRandomNeighbor());
+            }
+            jump();
 	}
 
+    
     @Override
-    public void hitBy(Panda p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        public void hitBy(Panda p) {
+        //még mindig semmi
+        }
+
+    @Override
+        public void follow(Tile t) {
+            t.accept(this);
+            if(getHoldsPanda()!=null) {   //ha az adott pandát követi egy másik, akkor neki is meghívjuk a követési metódusát
+                getHoldsPanda().follow(t);
+            }
+            jump();
+        }
 }

@@ -1,3 +1,6 @@
+
+import java.util.Random;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,18 +17,23 @@ public abstract class Panda extends Moveable implements Steppable{
     private Controller controller;
     private boolean free = true;
 
-	public void breakOut() {
-		// TODO - implement Panda.breakOut
-		throw new UnsupportedOperationException();
+	// a lánc felbontásához használt metódus
+        public void breakOut() {
+            if(getHoldsPanda()!=null) {   //megkeressük azt a pandát, aki már nem fogja senki kezét
+                getHoldsPanda().breakOut();
+            }
+            heldByMoveable.setHoldsPanda(null);    //az előttünk lévő elengedi a mi kezünket
+            setHeldByMoveable(null);    //elengedjük az előttünk lévő kezét
 	}
 
 	/**
 	 * 
-	 * @param o
+	 * @param o: az orangután, ami ütközik az adott pandával
 	 */
 	public void hitBy(Orangutan o) {
-		// TODO - implement Panda.hitBy
-		throw new UnsupportedOperationException();
+            o.add(this);
+            setFree(false);
+            
 	}
 
 	/**
@@ -33,40 +41,58 @@ public abstract class Panda extends Moveable implements Steppable{
 	 * @param e
 	 */
 	public void collideWith(Element e) {
-		// TODO - implement Panda.collideWith
-		throw new UnsupportedOperationException();
+            e.hitBy(this);
 	}
 
-	/**
+	/** a panda követi az előtte lévőt, abstract, mivel minden panda típus lépése végén más esemény hívódik meg
 	 * 
-	 * @param t
+	 * @param t: az a csempre, amire a pandának lépnie kell majd
 	 */
-	public void follow(Tile t) {
-		// TODO - implement Panda.follow
-		throw new UnsupportedOperationException();
-	}
+	public abstract void follow(Tile t);
 
-	public void step() {
-		// TODO - implement Panda.step
-		throw new UnsupportedOperationException();
-	}
+	//lép a panda, abstract, mivel minden panda típus lépése végén más esemény hívódik meg
+        public abstract void step();
 
-	public void ledOut() {
-		// TODO - implement Panda.ledOut
-		throw new UnsupportedOperationException();
+        /**
+         * 
+         * @param i: ezt az értéket növeli a panda, számolva hogy hány pontot kell kapnia az orangutánnak
+         */
+        public int ledOut(int i) {
+            i++;
+            if(getHoldsPanda()!=null) {   //végigmegyünk az egész láncon, végignövelve az i értékét
+                getHoldsPanda().ledOut(i);
+            }
+            getTile().remove();   //eltávolítjuk a csempéről a pandát
+            controller.remove(this);   //majd a játékból is
+            return i;   //a pontszám, amit végül az orangutánnak jóvá lesz írva
 	}
 
 	/**
 	 * 
-	 * @param m
+	 * @param m: az a mozgó egység, amelyik a panda kezét fogja fogni és így vezetni is azt
 	 */
 	public void setHeldByMoveable(Moveable m) {
-		// TODO - implement Panda.setHeldByMoveable
-		throw new UnsupportedOperationException();
+            heldByMoveable = m;
 	}
 
-	public void fall() {
-		// TODO - implement Panda.fall
-		throw new UnsupportedOperationException();
+	//lezuhan a panda
+        public void fall() {
+            if(free==false) { breakOut();}   //ha a pandát vezették, akkor felbomlik a mögötte lévő sor
+            getTile().remove();   //eltávolítjuk a csempéről
+            controller.remove(this);   //majd a játékból is
 	}
+        /**
+         * 
+         * @param f 
+         */
+        public void setFree(boolean f) {free = f;}
+        
+        public boolean getFree() {return free;}
+        
+        //a lehetséges szomszédok közül választ egyet véletlenszerűen
+        public int pickRandomNeighbor() {
+            Random r = new Random();
+            int n = r.nextInt(getTile().getNeighborCount());   //lekérdezzük, hogy a csempének, amin a panda áll, hány szomszédja van
+            return n;
+        }
 }

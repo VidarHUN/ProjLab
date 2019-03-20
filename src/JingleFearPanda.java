@@ -10,23 +10,34 @@
  */
 public class JingleFearPanda extends Panda {
     
-    public void fear() {
-		// TODO - implement JingleFearPanda.fear
-		throw new UnsupportedOperationException();
+        //a panda megijed és felbontja a láncot, amiben volt
+        public void fear() {
+            if(getTile().getJingled()==true) {   //megnézzük, hogy csilingelt-e az adott csempe bármelyik szomszédja
+                if(getFree()==false) {   //ha igen, megnézzük, hogy szabad-e a panda
+                    breakOut();   //ha nem, akkor felbontjuk a láncot
+                }
+            }
 	}
 
-	public void step() {
-		// TODO - implement JingleFearPanda.step
-		throw new UnsupportedOperationException();
+    @Override
+        public void step() {
+            if(getFree()==true) {   //megnézzük, hogy szabad-e a panda, ha igen akkor léptetjük
+                move(pickRandomNeighbor());
+            }
+            fear();
 	}
-
-	public void follow() {
-		// TODO - implement JingleFearPanda.follow
-		throw new UnsupportedOperationException();
+        
+    @Override
+        public void follow(Tile t) {
+            t.accept(this);
+            if(getHoldsPanda()!=null) {   //ha az adott pandát követi egy másik, akkor neki is meghívjuk a követési metódusát
+                getHoldsPanda().follow(t);
+            }
+            fear();
 	}
 
     @Override
     public void hitBy(Panda p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //még mindig semmi
     }
 }

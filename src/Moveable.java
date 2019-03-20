@@ -74,4 +74,8 @@ public abstract class Moveable implements Element {
 	public void leave() {
 		tile.remove();
 	}
+        
+        public Panda getHoldsPanda() {
+            return holdsPanda;
+        }
 }
