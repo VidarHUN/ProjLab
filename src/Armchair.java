@@ -6,12 +6,11 @@ public class Armchair implements Element, Steppable{
     private Tile tile;
     private SleepyPanda panda;
     
+    public Armchair(Tile tl){
+        tile = tl;
+    }
     
-    
-
     /**
-     * 
-     * 
      * Ez a metódus kidobja a pandát az Armchairből.
      * 
      */
@@ -26,27 +25,25 @@ public class Armchair implements Element, Steppable{
      * @param sp Az a panda amelyik aludni szeretne.
      */
     public void gyereRam(SleepyPanda sp) {
+            countToDrop = 10;
             Tile tmp = new Tile();
             sp.setTile(tmp);
     }
-
+    
+    @Override
     public void step() {
-            // TODO - implement Armchair.step
-            throw new UnsupportedOperationException();
+            if(countToDrop > 0  && panda != null) countToDrop--;
+            else if(countToDrop < 1 && panda == null);
+            else if(countToDrop < 1 && panda != null) drop();
+            else;
     }
 
     @Override
-    public void hitBy(Orangutan o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void hitBy(Orangutan o) {  }
 
     @Override
-    public void hitBy(Panda p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void hitBy(Panda p) {  }
 
     @Override
-    public void collideWith(Element e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void collideWith(Element e) { }
 }
