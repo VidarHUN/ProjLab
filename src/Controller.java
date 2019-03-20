@@ -5,16 +5,16 @@ public class Controller {
     
     private static final Controller INSTANCE = new Controller();
     
-    private boolean endGame;
+    private static boolean endGame;
     
-    private Clock clock;
-    private Orangutan orangutan;
-    private ArrayList<Panda> pandas;
-    private ArrayList<Tile> tiles;
+    private static Clock clock;
+    private static Orangutan orangutan;
+    private static ArrayList<Panda> pandas;
+    private static ArrayList<Tile> tiles;
     
     private Controller(){}
     
-    public Controller getInstance(){
+    public static Controller getInstance(){
         return INSTANCE;
     }
     
@@ -43,7 +43,7 @@ public class Controller {
         endGame = true;
     }
     
-    public void setClock(Clock clk){
+    public static void setClock(Clock clk){
         clock = clk;
     }
     
@@ -51,7 +51,7 @@ public class Controller {
         return clock;
     }
     
-    public void addTile(Tile tl){
+    public static void addTile(Tile tl){
         tiles.add(tl);
     }
     
@@ -59,7 +59,7 @@ public class Controller {
         return tiles;
     }
     
-    public void addPanda(Panda pnd){
+    public static void addPanda(Panda pnd){
         pandas.add(pnd);
     }
 
