@@ -43,7 +43,7 @@ public class Controller {
         endGame = true;
     }
     
-    public static void setClock(Clock clk){
+    public void setClock(Clock clk){
         clock = clk;
     }
     
@@ -51,7 +51,7 @@ public class Controller {
         return clock;
     }
     
-    public static void addTile(Tile tl){
+    public void addTile(Tile tl){
         tiles.add(tl);
     }
     
@@ -59,7 +59,7 @@ public class Controller {
         return tiles;
     }
     
-    public static void addPanda(Panda pnd){
+    public void addPanda(Panda pnd){
         pandas.add(pnd);
     }
 
