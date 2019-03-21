@@ -6,44 +6,39 @@
 
 /**
  *
- * @author ricsi
+ * @author Dani
  */
 public class Cupboard implements Element {
-  
+    
+    //A szekrény "párja." Az a hely, ahová a moveable menni fog, ha ütközött a szekrénnyel.
     private Cupboard pair;
-    /**
-	 * 
-	 * @param o
-	 */
-	public void hitBy(Orangutan o) {
-		// TODO - implement Cupboard.hitBy
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param p
-	 */
-	public void hitBy(Panda p) {
-		// TODO - implement Cupboard.hitBy
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param e
-	 */
-	public void collideWith(Element e) {
-		// TODO - implement Cupboard.collideWith
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param mvbl
-	 */
-	public void teleportTo(Moveable mvbl) {
-		// TODO - implement Cupboard.teleportTo
-		throw new UnsupportedOperationException();
-	}
+    //A csempe, amelyen a szekrény elhelyezkedik.
+    private Tile tile;
+    
+    //Meghívja a teleportTo függvényt az orangutánra, ha az a szekrénnyel ütközött.
+    @Override
+    public void hitBy(Orangutan o) {
+        teleportTo(o);
+    }
+    
+    //Meghívja a teleportTo függvényt a pandára, ha az a szekrénnyel ütközött.
+    @Override
+    public void hitBy(Panda p) {
+        teleportTo(p);
+    }
+    
+    //Áthelyezi a moveablet a szekrény párjával szomszédos csempék egyikére.
+    public void teleportTo(Moveable mvbl) {
+        pair.getTile().placeMoveableOnNeighbor(mvbl);
+    }
+    
+    //Visszaadja a csempét, amelyen a szekrény van.
+    public Tile getTile(){
+        return tile;
+    }
+    
+    //Szekrény nem ütközhet semmivel.
+    @Override
+    public void collideWith(Element e) { }
+    
 }

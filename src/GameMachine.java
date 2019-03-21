@@ -6,46 +6,35 @@
 
 /**
  *
- * @author ricsi
+ * @author Dani
  */
-public class GameMachine implements Element {
+public class GameMachine implements Element, Steppable {
  
+    //Tárolja, hogy a játékgép melyik csempén van.
     private Tile tile;
     
-        public void invertJingled() {
-		// TODO - implement GameMachine.invertJingled
-		throw new UnsupportedOperationException();
-	}
+    //Meghívja a csempére azt a függvényt, amely invertálja a szomszédos csempék jingled változóját.
+    public void invertJingled() {
+        tile.invertNeighborsJingled();
+    }
+    
+    //Véletlenszerűen meghívja az invertJingled() függvényt.
+    @Override
+    public void step() {
+        if(Math.random() < 0.4){
+                invertJingled();
+        }
+    }
+    
+    //Nem történik semmi, ha játékgépbe ütközik orangután.
+    @Override
+    public void hitBy(Orangutan o) { }
 
-	/**
-	 * 
-	 * @param o
-	 */
-	public void hitBy(Orangutan o) {
-		// TODO - implement GameMachine.hitBy
-		throw new UnsupportedOperationException();
-	}
+    //Nem történik semmi, ha játékgépbe ütközik panda.
+    @Override
+    public void hitBy(Panda p) { }
 
-	/**
-	 * 
-	 * @param p
-	 */
-	public void hitBy(Panda p) {
-		// TODO - implement GameMachine.hitBy
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param e
-	 */
-	public void collideWith(Element e) {
-		// TODO - implement GameMachine.collideWith
-		throw new UnsupportedOperationException();
-	}
-
-	public void step() {
-		// TODO - implement GameMachine.step
-		throw new UnsupportedOperationException();
-	}
+    //Játékgép nem ütközhet semmibe.
+    @Override
+    public void collideWith(Element e) { }
 }

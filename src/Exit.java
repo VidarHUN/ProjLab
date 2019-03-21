@@ -6,35 +6,25 @@
 
 /**
  *
- * @author ricsi
+ * @author Dani
  */
 public class Exit implements Element {
-  
+    
+    //Tárolja, hogy melyik csempe jelképezi a játékmezőn a bejáratot.
     private Tile entrance;
-    /**
-	 * 
-	 * @param e
-	 */
-	public void collideWith(Element e) {
-		// TODO - implement Exit.collideWith
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param o
-	 */
-	public void hitBy(Orangutan o) {
-		// TODO - implement Exit.hitBy
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param p
-	 */
-	public void hitBy(Panda p) {
-		// TODO - implement Exit.hitBy
-		throw new UnsupportedOperationException();
-	}
+    
+    //Lekezeli azt a szituációt, amikor orangután ütközik a kijáratba.
+    @Override
+    public void hitBy(Orangutan o) {
+        o.leadOut(); //Amennyi pandát vitt ki az orangután, annyi pontot fog kapni érte. Ez a függvény meghívja a pandákra a ledOut() függvényt is.
+        entrance.accept(o); //Áthelyezi az orangutánt a bejárathoz.
+    }
+    
+    //Nem történik semmi, ha kijáratba ütközik panda.
+    @Override
+    public void hitBy(Panda p) { }
+    
+    //Kijárat nem ütközhet semmibe.
+    @Override
+    public void collideWith(Element e) { }
 }

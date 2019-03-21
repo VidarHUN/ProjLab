@@ -6,45 +6,35 @@
 
 /**
  *
- * @author ricsi
+ * @author Dani
  */
 public class ChocoMachine implements Element, Steppable{
     
+    //Tárolja, hogy a csokiautomata melyik csempén van.
     private Tile tile;
+    
+    //Meghívja a csempére azt a függvényt, amely invertálja a szomszédos csempék piped változóját.
     public void invertPiped() {
-		// TODO - implement ChocoMachine.invertPiped
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param o
-	 */
-	public void hitBy(Orangutan o) {
-		// TODO - implement ChocoMachine.hitBy
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param p
-	 */
-	public void hitBy(Panda p) {
-		// TODO - implement ChocoMachine.hitBy
-		throw new UnsupportedOperationException();
-	}
-
-	public void step() {
-		// TODO - implement ChocoMachine.step
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param e
-	 */
-	public void collideWith(Element e) {
-		// TODO - implement ChocoMachine.collideWith
-		throw new UnsupportedOperationException();
-	}
+        tile.invertNeighborsPiped();
+    }
+    
+    //Véletlenszerűen meghívja az invertPiped() függvényt.
+    @Override
+    public void step() {
+        if(Math.random() < 0.4){
+                invertPiped();
+        }
+    }
+    
+    //Nem történik semmi, ha csokiautomatába ütközik orangután.
+    @Override
+    public void hitBy(Orangutan o) { }
+    
+    //Nem történik semmi, ha csokiautomatába ütközik panda.
+    @Override
+    public void hitBy(Panda p) { }
+    
+    //Csokiautomata nem ütközhet semmibe.
+    @Override
+    public void collideWith(Element e) { }
 }
