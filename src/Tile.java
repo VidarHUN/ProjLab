@@ -112,14 +112,15 @@ public class Tile {
 	}
         
         /**
-         * Nem akartam kitörölni, ezért csak kikommenteztem. Ennek ugyanis 
-         * nincs sok értelme csak a BreakableTile-ban, de mivel az egy szimpla 
-         * leszármazás így itt ez fölös. 
+         * Ez a metódus, polimorfizmus miatt van itt, ebben az osztályban nem csinál semmit.
+         * Ezt a metódust hívja meg az a panda, amelyik ugrik, és akkor csinál valamit,
+         * ha az adott csempe törhető.
+         * */
 	public void loseLifePoint() {
 		// TODO - implement Tile.loseLifePoint
 		throw new UnsupportedOperationException();
 	}
-        * */
+
 
 	/**
 	 * 
