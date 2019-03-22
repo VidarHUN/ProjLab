@@ -25,9 +25,12 @@ public class Armchair implements Element, Steppable{
      * @param sp Az a panda amelyik aludni szeretne.
      */
     public void gyereRam(SleepyPanda sp) {
+        if(panda != null){
             countToDrop = 10;
             Tile tmp = new Tile();
             sp.setTile(tmp);
+            panda = sp;
+        }
     }
     
     @Override
