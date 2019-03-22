@@ -38,7 +38,6 @@ public class Armchair implements Element, Steppable{
             if(countToDrop > 0  && panda != null) countToDrop--;
             else if(countToDrop < 1 && panda == null);
             else if(countToDrop < 1 && panda != null) drop();
-            else;
     }
     
     /**
