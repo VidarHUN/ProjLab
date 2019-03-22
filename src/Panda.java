@@ -57,14 +57,12 @@ public abstract class Panda extends Moveable implements Steppable{
          * 
          * @param i: ezt az értéket növeli a panda, számolva hogy hány pontot kell kapnia az orangutánnak
          */
-        public int ledOut(int i) {
-            i++;
-            if(getHoldsPanda()!=null) {   //végigmegyünk az egész láncon, végignövelve az i értékét
-                getHoldsPanda().ledOut(i);
+        public void ledOut() {
+            if(getHoldsPanda() != null) {   //végigmegyünk az egész láncon, végignövelve az i értékét
+                getHoldsPanda().ledOut();
             }
             getTile().remove();   //eltávolítjuk a csempéről a pandát
-            controller.remove(this);   //majd a játékból is
-            return i;   //a pontszám, amit végül az orangutánnak jóvá lesz írva
+            controller.removePanda(this);   //majd a játékból is
 	}
 
 	/**
@@ -79,7 +77,7 @@ public abstract class Panda extends Moveable implements Steppable{
         public void fall() {
             if(free==false) { breakOut();}   //ha a pandát vezették, akkor felbomlik a mögötte lévő sor
             getTile().remove();   //eltávolítjuk a csempéről
-            controller.remove(this);   //majd a játékból is
+            controller.removePanda(this);   //majd a játékból is
 	}
         /**
          * 
