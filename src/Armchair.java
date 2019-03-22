@@ -42,16 +42,10 @@ public class Armchair implements Element, Steppable{
     }
     
     /**
-     * Sorry, de senki nem válasszolt és siettem, ezért tettem bele egy ilyet, 
-     * mert máshogy nem tudtam volna megvalósítani a getFreeNeighborChair 
-     * metódust és ez tűnt a legegyszerűbbnek.
-     * @author ricsi
-     * @return 
+     * @return boolean szabad-e az Armchair
      */
-    public boolean isFree(){
-        if(panda != null)
-            return false;
-        return true;
+    public boolean isFree(){       
+        return panda == null;
     }
 
     @Override
