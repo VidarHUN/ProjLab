@@ -40,6 +40,19 @@ public class Armchair implements Element, Steppable{
             else if(countToDrop < 1 && panda != null) drop();
             else;
     }
+    
+    /**
+     * Sorry, de senki nem válasszolt és siettem, ezért tettem bele egy ilyet, 
+     * mert máshogy nem tudtam volna megvalósítani a getFreeNeighborChair 
+     * metódust és ez tűnt a legegyszerűbbnek.
+     * @author ricsi
+     * @return 
+     */
+    public boolean isFree(){
+        if(panda != null)
+            return false;
+        return true;
+    }
 
     @Override
     public void hitBy(Orangutan o) {  }

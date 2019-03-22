@@ -8,21 +8,41 @@
  *
  * @author ricsi
  */
+
+/**
+ * 
+ * Speciális csempe, aminek van élettartama. Ha az nullára csökken, akkor a 
+ * csempe eltörik, és a rajta álló állat meghal.
+ */
 public class BreakableTile extends Tile{
     
-    private int lifePoints = 20;
+    //Ha a csempe eléri a nullát, akkor eltörik a csempe. 
+    private int lifePoints = 20; 
 
 	/**
-	 * 
+	 * Ütközteti az elemeket
 	 * @param mvbl
 	 */
+        @Override
 	public void accept(Moveable mvbl) {
-		// TODO - implement BreakabaleTile.accept
-		throw new UnsupportedOperationException();
+            if (this.getMoveable() == null){
+                loseLifePoint();
+                setMoveable(mvbl);
+                mvbl.leave();
+                if(lifePoints < 1){
+                    mvbl.fall();
+                }
+            } else {
+                mvbl.collideWith(element);
+            }
 	}
-
+        
+        /**
+         * Csökkenti a tile élettartamát. Ha eléri a nullát, akkor minden 
+         * állat, ami rálép meghal. 
+         */
 	public void loseLifePoint() {
-		// TODO - implement BreakabaleTile.loseLifePoint
-		throw new UnsupportedOperationException();
+            if (lifePoints > 0)
+                lifePoints--; 
 	}
 }

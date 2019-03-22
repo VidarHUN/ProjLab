@@ -11,73 +11,136 @@ import java.util.List;
  *
  * @author ricsi
  */
+
+/**
+ * 
+ * A csempéket reprezentáló osztály. Ezeken tárólódnak el a különböző elemek, 
+ * de egyszerre egy csempén mindig csak egy elem lehet, ez igaz még a fotelre 
+ * is, mivel a megvalósítás szempontjából a fotelben ülő panda nem azon a 
+ * csempén van, amin maga a fotel is, hanem a fotelben.
+ */
 public class Tile {
     
+    //Csempe szomszédai, melyek szintén csempék 
     private List<Tile> neighbors;
+    
+    //Szomszédos fotelek tárolása
     private List<Armchair> neighborChairs;
+    
+    //True, ha az előző körben egy szomszédos csokiautomata sípolt
     private boolean piped;
+    
+    //True, ha az előző körben egy szomszédos játékgép csilingelt
     private boolean jingled;
-    private Element element;
-
+    
+    //Az adott csempén lévő elem 
+    Element element;
+        
+        /**
+         * Konstruktor
+         * @param e 
+         */
+        Tile(Element e){
+            this.element = e; 
+        }
+        
+        /**
+         * Konstruktor
+         */
+        Tile() {}
+        
+        //Visszatér a csempén lévő elemmel. 
 	public Moveable getMoveable() {
-		// TODO - implement Tile.getMoveable
-		throw new UnsupportedOperationException();
+            return (Moveable) element; 
 	}
 
 	/**
 	 * 
 	 * @param mvbl
+         * Beállítja a csempén lévő moveable-t
 	 */
 	public void setMoveable(Moveable mvbl) {
-		// TODO - implement Tile.setMoveable
-		throw new UnsupportedOperationException();
+            this.element = (Element) mvbl; 
 	}
 
 	/**
 	 * 
 	 * @param mvbl
+         * Megvizsgálja, hogy a csempére rá tud-e lépni a paraméterben megadott 
+         * moveable, vagy nem.
 	 */
 	public void accept(Moveable mvbl) {
-		// TODO - implement Tile.accept
-		throw new UnsupportedOperationException();
+            if (element != null){
+                mvbl.collideWith(element);
+            }else {
+                setMoveable(mvbl);
+                mvbl.leave();
+            }
 	}
 
 	/**
 	 * 
 	 * @param idx
+         * Visszatér a paraméterben megadott indexű szomszéd csempével.
+         * @return 
 	 */
 	public Tile getNeighbor(int idx) {
-		// TODO - implement Tile.getNeighbor
-		throw new UnsupportedOperationException();
+            return neighbors.get(idx);
 	}
-
+        
+        /**
+         * Leszedi a csempén lévő elemet a csempéről.
+         */
 	public void remove() {
-		// TODO - implement Tile.remove
-		throw new UnsupportedOperationException();
+            this.element = null; 
 	}
-
+        
+        /**
+         * Visszatér egy szabad/üres szomszédos fotellel.
+         * @return 
+         */
 	public Armchair getFreeNeighborChair() {
-		// TODO - implement Tile.getFreeNeighborChair
-		throw new UnsupportedOperationException();
+            int count = 0; 
+            for (Armchair a : neighborChairs){
+                if(a.isFree() == true){
+                    count++;
+                    break;
+                }
+                count++;
+            }
+            return neighborChairs.get(count);
 	}
-
+        
+        /**
+         * Nem akartam kitörölni, ezért csak kikommenteztem. Ennek ugyanis 
+         * nincs sok értelme csak a BreakableTile-ban, de mivel az egy szimpla 
+         * leszármazás így itt ez fölös. 
 	public void loseLifePoint() {
 		// TODO - implement Tile.loseLifePoint
 		throw new UnsupportedOperationException();
 	}
+        * */
 
 	/**
 	 * 
 	 * @param mvbl
+         * Elhelyezi az adott moveablet egy szabad szomszédos csempére.
 	 */
 	public void placeMoveableOnNeighbor(Moveable mvbl) {
-		// TODO - implement Tile.placeMoveableOnNeighbor
-		throw new UnsupportedOperationException();
-	}
+            Tile tmp = new Tile(); 
+            tmp.setMoveable(mvbl); 
+                if (element != null){
+                    for (Tile t : neighbors){
+                        t.accept(mvbl);
+                        this.element = tmp.getMoveable();
+                }
+            }
+	}  
 
 	/**
 	 * 
 	 * @param j
+         * Beállítja a jingled attribútumot a paraméterben megadottra
 	 */
 	public void setJingled(boolean j) {
 		this.jingled = j;
@@ -86,26 +149,59 @@ public class Tile {
 	/**
 	 * 
 	 * @param p
+         * Beállítja a piped attribútumot a paraméterben megadottra.
 	 */
 	public void setPiped(boolean p) {
 		this.piped = p;
 	}
-
+        
+        /**
+         * 
+         * @return 
+         * Visszatért a jingled attribútum értékével.
+         */
 	public boolean getJingled() {
 		return this.jingled;
 	}
-
+        
+        /**
+         * 
+         * @return 
+         * Visszatért a piped attribútum értékével.
+         */
 	public boolean getPiped() {
 		return this.piped;
 	}
-
+        
+        /**
+         * Visszatér a szomszédok számával 
+         * @return 
+         */
+        public int getNeighborCount(){
+            return neighbors.size();
+        }
+        
+        /**
+         * Beállítja a szomszédos csempék piped boolean attribútumát az 
+         * ellenkezőjére
+         */
 	public void invertNeighborsPiped() {
-		// TODO - implement Tile.invertNeighborsPiped
-		throw new UnsupportedOperationException();
+            boolean tmp;
+            for (Tile t : neighbors){
+                tmp = t.getPiped();
+                t.setPiped(!tmp);
+            }
 	}
-
+        
+        /**
+         * Beállítja a szomszédos csempék jingled boolean attribútumát az 
+         * ellenkezőjére.
+         */
 	public void invertNeighborsJingled() {
-		// TODO - implement Tile.invertNeighborsJingled
-		throw new UnsupportedOperationException();
+            boolean tmp;
+            for (Tile t : neighbors){
+                tmp = t.getJingled();
+                t.setJingled(!tmp);
+            }
 	}
 }
