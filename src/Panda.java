@@ -14,7 +14,6 @@ import java.util.Random;
 public abstract class Panda extends Moveable implements Steppable{
 
     private Moveable heldByMoveable;
-    private Controller controller;
     private boolean free = true;
 
 	// a lánc felbontásához használt metódus
@@ -30,6 +29,7 @@ public abstract class Panda extends Moveable implements Steppable{
 	 * 
 	 * @param o: az orangután, ami ütközik az adott pandával
 	 */
+        @Override
 	public void hitBy(Orangutan o) {
             o.add(this);
             setFree(false);
@@ -40,6 +40,7 @@ public abstract class Panda extends Moveable implements Steppable{
 	 * 
 	 * @param e
 	 */
+        @Override
 	public void collideWith(Element e) {
             e.hitBy(this);
 	}
@@ -51,18 +52,19 @@ public abstract class Panda extends Moveable implements Steppable{
 	public abstract void follow(Tile t);
 
 	//lép a panda, abstract, mivel minden panda típus lépése végén más esemény hívódik meg
+        @Override
         public abstract void step();
 
         /**
          * 
-         * @param i: ezt az értéket növeli a panda, számolva hogy hány pontot kell kapnia az orangutánnak
+         * Ez a metódus az, ami kivezeti a pandát a pályáról
          */
         public void ledOut() {
             if(getHoldsPanda() != null) {   //végigmegyünk az egész láncon, végignövelve az i értékét
                 getHoldsPanda().ledOut();
             }
             getTile().remove();   //eltávolítjuk a csempéről a pandát
-            controller.removePanda(this);   //majd a játékból is
+            Controller.getInstance().removePanda(this);   //majd a játékból is
 	}
 
 	/**
@@ -74,10 +76,11 @@ public abstract class Panda extends Moveable implements Steppable{
 	}
 
 	//lezuhan a panda
+        @Override
         public void fall() {
             if(free==false) { breakOut();}   //ha a pandát vezették, akkor felbomlik a mögötte lévő sor
             getTile().remove();   //eltávolítjuk a csempéről
-            controller.removePanda(this);   //majd a játékból is
+            Controller.getInstance().removePanda(this);   //majd a játékból is
 	}
         /**
          * 
