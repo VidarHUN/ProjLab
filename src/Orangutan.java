@@ -31,7 +31,8 @@ public class Orangutan extends Moveable{
 
 	/**
 	 * 
-	 * @param pnd
+	 * @param pnd Az a panda, amelyik most fog sorba fűződni.
+         * Ez a metódus az orangután sorához hozzáadja a paraméterben megkapott pnadát.
 	 */
 	public void add(Panda pnd) {
 		if(holdsPanda != null){
