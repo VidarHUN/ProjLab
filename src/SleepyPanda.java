@@ -23,7 +23,13 @@ public class SleepyPanda extends Panda{
                 immuneTime = 3;
             }
 	}
-
+        
+    /**
+     *SleepyPanda step metódusa, amely csökkenti az immunitás idejét,
+     * elveszi az immunitását,
+     * és ha a panda nincs sorban, akkor véletlenszerű irányba lép
+     */
+    @Override
 	public void step() {
             if(immuneTime>0) { //először csökkentjük az immunitás idejét
                 immuneTime--;
@@ -41,6 +47,7 @@ public class SleepyPanda extends Panda{
          * 
          * @param t: a csempe, ahova lépnie kell a pandának
          */
+        @Override
         public void follow(Tile t) {
             t.accept(this);
             if(getHoldsPanda()!=null) {   //ha az adott pandát követi egy másik, akkor neki is meghívjuk a követési metódusát
@@ -48,7 +55,7 @@ public class SleepyPanda extends Panda{
             }
             checkChair();
 	}
-        
+                
         //megnézi, hogy van-e szomszédos és üres fotel
         public void checkChair() {
             if(getTile().getFreeNeighborChair()!=null && immune==false) {   //ha van szomszédos üres fotel és nem immunis a panda, akkor beleül
