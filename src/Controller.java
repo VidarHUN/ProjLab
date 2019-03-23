@@ -7,10 +7,10 @@ public class Controller {
     
     private static boolean endGame;
     
-    private static Clock clock;
-    private static Orangutan orangutan;
-    private static ArrayList<Panda> pandas;
-    private static ArrayList<Tile> tiles;
+    private static Clock clock = new Clock();
+    private static Orangutan orangutan = new Orangutan();
+    private static ArrayList<Panda> pandas = new ArrayList<Panda>();
+    private static ArrayList<Tile> tiles = new ArrayList<Tile>();
     
     private Controller(){}
     
