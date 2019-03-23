@@ -2,7 +2,6 @@
 
 public class Orangutan extends Moveable{
  
-    private static final Controller CONTROLLER = Controller.getInstance();
     private int points = 0;
 
 	/**
@@ -27,7 +26,7 @@ public class Orangutan extends Moveable{
         
         @Override
 	public void fall() {
-            CONTROLLER.endGame();
+            Controller.getInstance().endGame();
 	}
 
 	/**
