@@ -7,12 +7,16 @@ public class Orangutan extends Moveable{
 
 	/**
 	 * 
-	 * @param p
+	 * @param p A pontszám amit hozzá szeretnénk adni.
+         * Ez a metódus a paraméterben megadott pontszámot hozzáadja a játékos pontszámához.
 	 */
 	public void addPoints(int p) {
 		points += p;
 	}
 
+        /**
+         * Ez a metódus kivezeti azokat a pandákat akiket az orangután 
+        */
 	public void leadOut() {
             
 		if(holdsPanda != null){
