@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -22,7 +23,7 @@ import java.util.List;
 public class Tile {
     
     //Csempe szomszédai, melyek szintén csempék 
-    private List<Tile> neighbors;
+    private List<Tile> neighbors = new ArrayList<Tile>();
     
     //Szomszédos fotelek tárolása
     private List<Armchair> neighborChairs;
