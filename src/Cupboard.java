@@ -24,10 +24,10 @@ public class Cupboard implements Element {
     //Meghívja a teleportTo függvényt a pandára, ha az a szekrénnyel ütközött.
     @Override
     public void hitBy(Panda p) {
-        teleportTo(p);
+        pair.teleportTo(p);
     }
     
-    //Áthelyezi a moveablet a szekrény párjával szomszédos csempék egyikére.
+    //Áthelyezi a moveablet a szekrény szomszédos csempék egyikére.
     public void teleportTo(Moveable mvbl) {
         tile.placeMoveableOnNeighbor(mvbl);
     }
