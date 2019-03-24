@@ -12,14 +12,14 @@ public class PipingFearPanda extends Panda{
     
         //a panda ha megijed ugrik egyet
         public void jump() {
-            if(getTile().getPiped()==true) {   //megnézzük, hogy az adott csempe bármelyik szomszédja sípolt-e
+            if(getTile().getPiped()) {   //megnézzük, hogy az adott csempe bármelyik szomszédja sípolt-e
                 getTile().loseLifePoint();   //ha igen és törékeny csempén állunk, akkor csökkentjük a csempre életpontjait
             }
 	}
 
     @Override
 	public void step() {
-            if(getFree()==true) {   //megnézzük, hogy szabad-e a panda, ha igen akkor léptetjük
+            if(getFree()) {   //megnézzük, hogy szabad-e a panda, ha igen akkor léptetjük
                 move(pickRandomNeighbor());
             }
             jump();
