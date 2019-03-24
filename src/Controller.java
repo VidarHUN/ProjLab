@@ -17,14 +17,15 @@ public class Controller {
     public static Controller getInstance(){
         return INSTANCE;
     }
-    
+    //beállítja az orangután attribútumot
     public void setOrangutan(Orangutan ogtn){
         orangutan = ogtn;
     }
     
+    //visszaadja az orangután attribútumot
     public Orangutan getOrangutan(){return orangutan;}
     
-    
+    //Elindítja a játékot.
     public void startGame() { 
         endGame = false;
         try{
@@ -39,30 +40,37 @@ public class Controller {
         System.out.println("Game Over!");
     }
 
+    //Lezárja a játékot
     public void endGame() { 
         endGame = true;
     }
     
+    //beállítja a clock attribútumot
     public void setClock(Clock clk){
         clock = clk;
     }
     
+    //visszaadja a clock attribútumot
     public Clock getClock(){
         return clock;
     }
     
+    //hozzáad egy csempét a játékhoz
     public void addTile(Tile tl){
         tiles.add(tl);
     }
     
+    //visszaadja az összes csempét
     public ArrayList<Tile>getTiles(){
         return tiles;
     }
     
+    //hozzáad egy új pandát a játékhoz
     public void addPanda(Panda pnd){
         pandas.add(pnd);
     }
 
+    //elvesz egy pandát a játékból
     public void removePanda(Panda pnd) {
         pandas.remove(pnd);
     }
