@@ -18,7 +18,7 @@ public class Cupboard implements Element {
     //Meghívja a teleportTo függvényt az orangutánra, ha az a szekrénnyel ütközött.
     @Override
     public void hitBy(Orangutan o) {
-        teleportTo(o);
+        pair.teleportTo(o);
     }
     
     //Meghívja a teleportTo függvényt a pandára, ha az a szekrénnyel ütközött.
@@ -29,7 +29,7 @@ public class Cupboard implements Element {
     
     //Áthelyezi a moveablet a szekrény párjával szomszédos csempék egyikére.
     public void teleportTo(Moveable mvbl) {
-        pair.getTile().placeMoveableOnNeighbor(mvbl);
+        tile.placeMoveableOnNeighbor(mvbl);
     }
     
     //Visszaadja a csempét, amelyen a szekrény van.
