@@ -26,7 +26,27 @@ public class Controller {
     public Orangutan getOrangutan(){return orangutan;}
     
     //Elindítja a játékot.
-    public void startGame() { 
+    public void startGame() {
+        
+        Tile middle = new Tile();
+        Tile bottom = new Tile();
+        middle.setNeighborAt(2, bottom);
+        bottom.setNeighborAt(0, middle);
+        Tile right = new Tile();
+        middle.setNeighborAt(1, right);
+        right.setNeighborAt(3, middle);
+        Tile left = new Tile();
+        middle.setNeighborAt(3, left);
+        left.setNeighborAt(1, middle);
+        Armchair ac = new Armchair();
+        Tile top = new Tile(ac);
+        ac.setTile(top);
+        Panda sp = new SleepyPanda();
+        Controller.getInstance().addPanda(sp);
+        right.setMoveable(sp);
+        orangutan = new Orangutan();
+        middle.setMoveable(orangutan);
+        
         endGame = false;
         try{
             while(!endGame){
@@ -41,7 +61,7 @@ public class Controller {
     }
 
     //Lezárja a játékot
-    public void endGame() { 
+    public void endGame() {
         endGame = true;
     }
     
