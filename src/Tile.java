@@ -63,6 +63,7 @@ public class Tile {
             this.element = (Element) mvbl; 
 	}
         
+        //element setter
         public void setElement(Element lmnt){
             element = lmnt;
         }
