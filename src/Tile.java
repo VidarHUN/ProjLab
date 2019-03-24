@@ -62,6 +62,10 @@ public class Tile {
 	public void setMoveable(Moveable mvbl) {
             this.element = (Element) mvbl; 
 	}
+        
+        public void setElement(Element lmnt){
+            element = lmnt;
+        }
 
 	/**
 	 * 
