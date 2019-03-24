@@ -89,6 +89,16 @@ public class Tile {
 	}
         
         /**
+         * @param idx Ez az új csempe indexe
+         * @param tl Ez a szmszéd amit hozzá akarunk adni
+         * 
+         * Ez a metódus fix indexhez ad hozzá újcsempét a szomszédok közé.
+         */
+        public void setNeighborAt(int idx, Tile tl){
+            neighbors.add(idx, tl);
+        }
+        
+        /**
          * Leszedi a csempén lévő elemet a csempéről.
          */
 	public void remove() {
