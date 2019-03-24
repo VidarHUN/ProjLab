@@ -21,14 +21,15 @@ public class BreakableTile extends Tile{
 
 	/**
 	 * Ütközteti az elemeket
-	 * @param mvbl
+	 * @param mvbl Az a Moveable objektum amelyik a mezőre szeretne jönni.
 	 */
         @Override
 	public void accept(Moveable mvbl) {
             if (this.getMoveable() == null){
-                loseLifePoint();
                 setMoveable(mvbl);
+                loseLifePoint();
                 mvbl.leave();
+                mvbl.setTile(this);
                 if(lifePoints < 1){
                     mvbl.fall();
                 }
@@ -41,6 +42,7 @@ public class BreakableTile extends Tile{
          * Csökkenti a tile élettartamát. Ha eléri a nullát, akkor minden 
          * állat, ami rálép meghal. 
          */
+        @Override
 	public void loseLifePoint() {
             if (lifePoints > 0)
                 lifePoints--; 
