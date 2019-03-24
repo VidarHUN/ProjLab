@@ -6,7 +6,13 @@ public class Armchair implements Element, Steppable{
     private Tile tile;
     private SleepyPanda panda;
     
+    public Armchair(){}
+    
     public Armchair(Tile tl){
+        tile = tl;
+    }
+    
+    public void setTile(Tile tl){
         tile = tl;
     }
     
