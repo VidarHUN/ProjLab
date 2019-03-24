@@ -70,11 +70,11 @@ public class Tile {
          * moveable, vagy nem.
 	 */
 	public void accept(Moveable mvbl) {
-            if (element != null){
-                mvbl.collideWith(element);
-            }else {
+            if (element == null){
                 setMoveable(mvbl);
                 mvbl.leave();
+            }else {
+                 mvbl.collideWith(element);
             }
 	}
 
@@ -116,10 +116,7 @@ public class Tile {
          * Ezt a metódust hívja meg az a panda, amelyik ugrik, és akkor csinál valamit,
          * ha az adott csempe törhető.
          * */
-	public void loseLifePoint() {
-		// TODO - implement Tile.loseLifePoint
-		throw new UnsupportedOperationException();
-	}
+	public void loseLifePoint() {}
 
 
 	/**
