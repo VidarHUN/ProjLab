@@ -27,7 +27,7 @@ public class Controller {
     
     //Elindítja a játékot.
     public void startGame() {
-        
+        /*
         Tile middle = new Tile();
         Tile bottom = new Tile();
         middle.setNeighborAt(2, bottom);
@@ -45,7 +45,7 @@ public class Controller {
         Controller.getInstance().addPanda(sp);
         right.setMoveable(sp);
         orangutan = new Orangutan();
-        middle.setMoveable(orangutan);
+        middle.setMoveable(orangutan);*/
         
         endGame = false;
         try{
@@ -81,7 +81,7 @@ public class Controller {
     }
     
     //visszaadja az összes csempét
-    public ArrayList<Tile>getTiles(){
+    public ArrayList<Tile> getTiles(){
         return tiles;
     }
     
