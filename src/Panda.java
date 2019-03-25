@@ -35,6 +35,9 @@ public abstract class Panda extends Moveable implements Steppable{
             setFree(false);
             
 	}
+        
+        @Override
+        public void hitBy(Panda pnd){}
 
 	/**
 	 * 
@@ -65,6 +68,7 @@ public abstract class Panda extends Moveable implements Steppable{
             }
             getTile().remove();   //eltávolítjuk a csempéről a pandát
             Controller.getInstance().removePanda(this);   //majd a játékból is
+            System.out.println("Panda kivezetve.");
 	}
 
 	/**
@@ -81,6 +85,7 @@ public abstract class Panda extends Moveable implements Steppable{
             if(free==false) { breakOut();}   //ha a pandát vezették, akkor felbomlik a mögötte lévő sor
             getTile().remove();   //eltávolítjuk a csempéről
             Controller.getInstance().removePanda(this);   //majd a játékból is
+            System.out.println("Panda leesett");
 	}
         /**
          * 
@@ -88,6 +93,7 @@ public abstract class Panda extends Moveable implements Steppable{
          */
         public void setFree(boolean f) {free = f;}
         
+        //Ez a metódus visszaadja azt, hogy a panda szabad-e.
         public boolean getFree() {return free;}
         
         //a lehetséges szomszédok közül választ egyet véletlenszerűen
