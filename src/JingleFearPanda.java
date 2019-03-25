@@ -16,9 +16,11 @@ public class JingleFearPanda extends Panda {
                 if(getFree()==false) {   //ha igen, megnézzük, hogy szabad-e a panda
                     breakOut();   //ha nem, akkor felbontjuk a láncot
                 }
+                System.out.println("JingleFearPanda megijedt.");
             }
 	}
 
+        //Ez a metódus a pandát lépteti
     @Override
         public void step() {
             if(!getFree()) {   //megnézzük, hogy szabad-e a panda, ha igen akkor léptetjük
@@ -27,6 +29,7 @@ public class JingleFearPanda extends Panda {
             fear();
 	}
         
+        //Ez a metódus követi a pandát kézen fogó moveable-t a paraméterként megadott mezőre
     @Override
         public void follow(Tile t) {
             t.accept(this);
@@ -35,9 +38,4 @@ public class JingleFearPanda extends Panda {
             }
             fear();
 	}
-
-    @Override
-    public void hitBy(Panda p) {
-        //még mindig semmi
-    }
 }
