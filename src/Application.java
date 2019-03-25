@@ -92,6 +92,10 @@ public class Application {
 		System.out.println("Mivel szeretnél lépni? (O|SP|JFP|PFP)");
 		readLine();
 		if(line.equals("0")) return null;
+                if(line.equals("q")){
+                    ret.add(line);
+                    return ret;
+                }
 		ret.add(line);
                 
                 System.out.println("Milyen irányba szeretnél lépni? (N|E|S|W)");
@@ -137,7 +141,6 @@ public class Application {
                 case "SP":
                     firstMvbl = sp = new SleepyPanda();
                     break;
-                    
                 default:
                     return;
             }                       //milyen moveable lép switch vége
