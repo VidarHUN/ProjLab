@@ -15,6 +15,29 @@ public class Cupboard implements Element {
     //A csempe, amelyen a szekrény elhelyezkedik.
     private Tile tile;
     
+    //alapértelmezett konstruktor
+    public Cupboard(){}
+    
+    //Konstruktor, megadhatjuk neki, hogy melyik szekrény a párja
+    public Cupboard(Cupboard pair){
+        this.pair = pair;
+    }
+    
+    //Konstruktor, megadhatjuk neki, hogy melyik csempén van
+    public Cupboard(Tile tile){
+        this.tile = tile;
+    }
+    
+    //Ez a metódus beállítja a pair értékét a paraméterben megkapott értékre.
+    public void setPair(Cupboard p){
+        pair = p;
+    }
+    
+    //Ez a metódus visszaadja a pair attribútumot.
+    public Cupboard getPair(){
+        return pair;
+    }
+    
     //Meghívja a teleportTo függvényt az orangutánra, ha az a szekrénnyel ütközött.
     @Override
     public void hitBy(Orangutan o) {
@@ -30,6 +53,7 @@ public class Cupboard implements Element {
     //Áthelyezi a moveablet a szekrény szomszédos csempék egyikére.
     public void teleportTo(Moveable mvbl) {
         tile.placeMoveableOnNeighbor(mvbl);
+        System.out.println("Moveable Teleportált");
     }
     
     //Visszaadja a csempét, amelyen a szekrény van.

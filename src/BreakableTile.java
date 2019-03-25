@@ -45,9 +45,11 @@ public class BreakableTile extends Tile{
         @Override
 	public void loseLifePoint() {
             if (lifePoints > 0)
-                lifePoints--; 
+                lifePoints--;
+            System.out.println("Lifepoints csökkent. Új érték: " + lifePoints);
 	}
         
+        //Ez a metódus beállítja a setLifePoints változó értékét a paraméterben megadott argumentumra
         public void setLifePoints(int lp){
             lifePoints = lp;
         }

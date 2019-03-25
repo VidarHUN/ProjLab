@@ -11,7 +11,16 @@
 public class Exit implements Element {
     
     //Tárolja, hogy melyik csempe jelképezi a játékmezőn a bejáratot.
-    private Tile entrance;
+    private final Tile entrance;
+    
+    public Exit(Tile ent){
+        entrance = ent;
+    }
+    
+    //Ez a metódus visszaadja a bejárati csempét
+    public Tile getEntrance(){
+        return entrance;
+    }
     
     //Lekezeli azt a szituációt, amikor orangután ütközik a kijáratba.
     @Override

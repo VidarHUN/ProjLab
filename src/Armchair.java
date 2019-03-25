@@ -6,14 +6,23 @@ public class Armchair implements Element, Steppable{
     private Tile tile;
     private SleepyPanda panda;
     
+    //Alapértelmezett Konstruktor
     public Armchair(){}
     
+    //Konstruktor, megadhatjuk neki azt, hogy melyik mezőn tartózkodik
     public Armchair(Tile tl){
         tile = tl;
+        for(Tile negh : tl.getNeighbors()){
+            negh.addNeighborChair(this);
+        }
     }
     
+    //Ez a metódus beállítja a tile értékét a paraméterben megadottra
     public void setTile(Tile tl){
         tile = tl;
+        for(Tile negh : tl.getNeighbors()){
+            negh.addNeighborChair(this);
+        }
     }
     
     /**
@@ -31,14 +40,16 @@ public class Armchair implements Element, Steppable{
      * @param sp Az a panda amelyik aludni szeretne.
      */
     public void gyereRam(SleepyPanda sp) {
-        if(panda != null){
+        if(panda == null){
             countToDrop = 10;
             Tile tmp = new Tile();
             sp.setTile(tmp);
             panda = sp;
+            System.out.println("SleepyPanda elaludt.");
         }
     }
     
+    //Ez az Armchairt léptető metódus
     @Override
     public void step() {
             if(countToDrop > 0  && panda != null) countToDrop--;

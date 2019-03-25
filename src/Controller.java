@@ -12,6 +12,7 @@ public class Controller {
     private static ArrayList<Panda> pandas = new ArrayList<Panda>();
     private static ArrayList<Tile> tiles = new ArrayList<Tile>();
     
+    //Alapértelmezett konstruktor
     private Controller(){}
     
     public static Controller getInstance(){
