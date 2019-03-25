@@ -26,12 +26,12 @@ public class Application {
             Controller controller = Controller.getInstance();
             Tile mainTile = new Tile();
             controller.addTile(mainTile);
-            mainTile.setNeighborAt(0, null);
-            mainTile.setNeighborAt(1, null);
-            mainTile.setNeighborAt(2, null);
-            mainTile.setNeighborAt(3, null);
+            for (int i = 0; i < 4; i++)
+            {
+                mainTile.setNeighborAt(i, null);
+            }
             
-            controller.startGame();
+            //controller.startGame();
             
             selectMoveable(controller);
             
@@ -92,10 +92,10 @@ public class Application {
             
             Tile neighbour = new Tile();
             cont.addTile(neighbour);
-            neighbour.setNeighborAt(0, null);
-            neighbour.setNeighborAt(1, null);
-            neighbour.setNeighborAt(2, null);
-            neighbour.setNeighborAt(3, null);
+            for (int i = 0; i < 4; i++)
+            {
+                neighbour.setNeighborAt(i, null);
+            }
             
             switch (str)
                     {
@@ -130,10 +130,10 @@ public class Application {
             String str = br.readLine();
             
             Tile neighbour = new Tile();
-            neighbour.setNeighborAt(0, null);
-            neighbour.setNeighborAt(1, null);
-            neighbour.setNeighborAt(2, null);
-            neighbour.setNeighborAt(3, null);
+            for (int i = 0; i < 4; i++)
+            {
+                neighbour.setNeighborAt(i, null);
+            }
             
             switch (str)
                     {
@@ -161,7 +161,7 @@ public class Application {
         public static String selectElementForOrangutan(Controller cont) throws IOException
         {
             System.out.println("Válassza ki, milyen elemmel ütközzön a panda/orangután!");
-            System.out.println("No: No (semmivel sem ütközik)");
+            System.out.println("NO: No (semmivel sem ütközik)");
             System.out.println("SP: SleepyPanda");
             System.out.println("JFP: JingleFearPanda");
             System.out.println("PFP: PipingFearPanda");
@@ -174,7 +174,19 @@ public class Application {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String str = br.readLine();
             
-            
+            switch (str)
+            {
+                case "NO": return "";
+                case "SP": return "";
+                case "JFP": return "";
+                case "PFP": return "";
+                case "E": return "";
+                case "W": return "";
+                case "GM": return "";
+                case "CM": return "";
+                case "A": return "";
+                case "C": return "";
+            }
             
             return null;
         }
@@ -182,7 +194,7 @@ public class Application {
         public static String selectElementForPanda(Controller cont) throws IOException
         {
             System.out.println("Válassza ki, milyen elemmel ütközzön a panda/orangután!");
-            System.out.println("No: No (semmivel sem ütközik)");
+            System.out.println("NO: No (semmivel sem ütközik)");
             System.out.println("O: Orangután");
             System.out.println("SP: SleepyPanda");
             System.out.println("JFP: JingleFearPanda");
@@ -196,9 +208,44 @@ public class Application {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String str = br.readLine();
             
-            
+            switch (str)
+            {
+                case "NO": return "";
+                case "SP": return "";
+                case "JFP": return "";
+                case "PFP": return "";
+                case "E": return "";
+                case "W": return "";
+                case "GM": return "";
+                case "CM": return "";
+                case "A": return "";
+                case "C": return "";
+            }
             
             return null;
         }
         
+        public static String selectTileType(Controller cont) throws IOException
+        {
+            System.out.println("Válassza ki, milyen típusú csempére lépjen a panda/orangután!");
+            System.out.println("NO: No (sima csempe)");
+            System.out.println("B: Breakable");
+            System.out.println("BT: Broken Tile");
+            System.out.println("GMT: GameMachine Tile (játékautomatával szomszédos csempe)");
+            System.out.println("CMT: ChocoMachine Tile (csokiautomatával szomszédos csempe)");
+            System.out.println("AT: ArmchairTile (fotellel szomszédos csempe)");
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String str = br.readLine();
+            
+            switch (str)
+            {
+                case "NO": return "";
+                case "B": return "";
+                case "BT": return "";
+                case "GMT": return "";
+                case "CMT": return "";
+                case "AT": return "";
+            }
+            return null;
+        }
 }
