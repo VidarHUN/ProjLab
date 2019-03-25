@@ -49,9 +49,10 @@ public class SleepyPanda extends Panda{
          */
         @Override
         public void follow(Tile t) {
+            Tile oldTile = getTile();
             t.accept(this);
             if(getHoldsPanda()!=null) {   //ha az adott pandát követi egy másik, akkor neki is meghívjuk a követési metódusát
-                getHoldsPanda().follow(t);
+                getHoldsPanda().follow(oldTile);
             }
             checkChair();
 	}
@@ -63,9 +64,4 @@ public class SleepyPanda extends Panda{
                 setFree(false);
             }
         }
-
-    @Override
-    public void hitBy(Panda p) {
-        //még mindig semmi
-    }
 }
