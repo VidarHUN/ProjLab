@@ -2,16 +2,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author ricsi
- */
 
 /**
  * 
@@ -23,10 +13,10 @@ import java.util.List;
 public class Tile {
     
     //Csempe szomszédai, melyek szintén csempék 
-    private List<Tile> neighbors = new ArrayList<Tile>();
+    private ArrayList<Tile> neighbors = new ArrayList<Tile>();
     
     //Szomszédos fotelek tárolása
-    private List<Armchair> neighborChairs;
+    private ArrayList<Armchair> neighborChairs = new ArrayList<Armchair>();
     
     //True, ha az előző körben egy szomszédos csokiautomata sípolt
     private boolean piped;
@@ -54,6 +44,10 @@ public class Tile {
 	public Moveable getMoveable() {
             return (Moveable) element; 
 	}
+        
+        public Element getElement(){
+            return element;
+        }
 
 	/**
 	 * 
@@ -79,6 +73,7 @@ public class Tile {
             if (element == null){
                 setMoveable(mvbl);
                 mvbl.leave();
+                mvbl.setTile(this);
             }else {
                  mvbl.collideWith(element);
             }
@@ -94,6 +89,16 @@ public class Tile {
             return neighbors.get(idx);
 	}
         
+        //visszaadja az összes szomszédját a csempének
+        public ArrayList<Tile> getNeighbors(){
+            return neighbors;
+        }
+        
+        //A paraméterként megadott szomszédos széket adja hozzá
+        public void addNeighborChair(Armchair ac){
+            neighborChairs.add(ac);
+        }
+        
         /**
          * @param idx Ez az új csempe indexe
          * @param tl Ez a szmszéd amit hozzá akarunk adni
@@ -101,7 +106,10 @@ public class Tile {
          * Ez a metódus fix indexhez ad hozzá újcsempét a szomszédok közé.
          */
         public void setNeighborAt(int idx, Tile tl){
-            neighbors.add(idx, tl);
+            if(idx >= neighbors.size()){
+                for(int i = neighbors.size() ; i < idx + 1 ; i++) neighbors.add(i, null);
+            }
+            neighbors.set(idx, tl);
         }
         
         /**
@@ -116,15 +124,12 @@ public class Tile {
          * @return 
          */
 	public Armchair getFreeNeighborChair() {
-            int count = 0; 
             for (Armchair a : neighborChairs){
-                if(a.isFree() == true){
-                    count++;
-                    break;
+                if(a.isFree()){
+                    return a;
                 }
-                count++;
             }
-            return neighborChairs.get(count);
+            return null;
 	}
         
         /**
@@ -141,14 +146,14 @@ public class Tile {
          * Elhelyezi az adott moveablet egy szabad szomszédos csempére.
 	 */
 	public void placeMoveableOnNeighbor(Moveable mvbl) {
-            Tile tmp = new Tile(); 
-            tmp.setMoveable(mvbl); 
-                if (element != null){
+            Tile tl = mvbl.getTile();
                     for (Tile t : neighbors){
                         t.accept(mvbl);
-                        this.element = tmp.getMoveable();
+                        if(tl.getMoveable() == null){
+                            return;
+                        }
                 }
-            }
+
 	}  
 
 	/**
