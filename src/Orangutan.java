@@ -41,7 +41,14 @@ public class Orangutan extends Moveable{
                 }
                 holdsPanda = pnd;
                 holdsPanda.setHeldByMoveable(this);
+                holdsPanda.setFree(false);
 	}
+        
+        //Azt az eseményt kezeli le, amikor orangután ütközik valami mással
+        @Override
+        public void collideWith(Element lmnt){
+            lmnt.hitBy(this);
+        }
 
     @Override
     public void hitBy(Orangutan o) {}
