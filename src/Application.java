@@ -176,7 +176,9 @@ public class Application {
             
             switch (str)
             {
-                case "NO": return "";
+                case "NO": 
+                    selectTileType(cont);
+                    return "";
                 case "SP": return "";
                 case "JFP": return "";
                 case "PFP": return "";
@@ -210,7 +212,9 @@ public class Application {
             
             switch (str)
             {
-                case "NO": return "";
+                case "NO": 
+                    selectTileType(cont);
+                    return "";
                 case "SP": return "";
                 case "JFP": return "";
                 case "PFP": return "";
