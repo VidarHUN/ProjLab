@@ -47,4 +47,8 @@ public class BreakableTile extends Tile{
             if (lifePoints > 0)
                 lifePoints--; 
 	}
+        
+        public void setLifePoints(int lp){
+            lifePoints = lp;
+        }
 }
