@@ -14,9 +14,11 @@ public class PipingFearPanda extends Panda{
         public void jump() {
             if(getTile().getPiped()) {   //megnézzük, hogy az adott csempe bármelyik szomszédja sípolt-e
                 getTile().loseLifePoint();   //ha igen és törékeny csempén állunk, akkor csökkentjük a csempre életpontjait
+                System.out.println("PipingFearPanda ugrott.");
             }
 	}
 
+        //Ez a metódus lépteti a pandát
     @Override
 	public void step() {
             if(getFree()) {   //megnézzük, hogy szabad-e a panda, ha igen akkor léptetjük
@@ -25,12 +27,7 @@ public class PipingFearPanda extends Panda{
             jump();
 	}
 
-    
-    @Override
-        public void hitBy(Panda p) {
-        //még mindig semmi
-        }
-
+        //Ez a metódus követi a pandát kézen fogó moveable-t a paraméterként megadott mezőre
     @Override
         public void follow(Tile t) {
             t.accept(this);
