@@ -43,6 +43,7 @@ public class Orangutan extends Moveable{
                 holdsPanda = pnd;
                 holdsPanda.setHeldByMoveable(this);
                 holdsPanda.setFree(false);
+		System.out.println("Panda hozzáadva a sorhoz");
 	}
         
         //Azt az eseményt kezeli le, amikor orangután ütközik valami mással
