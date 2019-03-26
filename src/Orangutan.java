@@ -11,6 +11,7 @@ public class Orangutan extends Moveable{
 	 */
 	public void addPoints(int p) {
 		points += p;
+		System.out.println(p + " pont hozzáadva, jelenlegi pontok: " + points);
 	}
 
         /**
