@@ -49,7 +49,7 @@ public class Application {
                     if(secondMvbl != null && tl1.getElement() != secondMvbl) System.out.println("A követő panda nem tudott követni.");
                 }
             } else if(sp != null){
-                if(tl2.getMoveable() == sp) {
+                if(tl2.getElement() == sp) {
                     sp.checkChair();
                     System.out.println("A SleepyPanda a második csempére lépett.");
                 }
