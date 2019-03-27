@@ -85,7 +85,7 @@ public abstract class Panda extends Moveable implements Steppable{
             if(free==false) { breakOut();}   //ha a pandát vezették, akkor felbomlik a mögötte lévő sor
             getTile().remove();   //eltávolítjuk a csempéről
             Controller.getInstance().removePanda(this);   //majd a játékból is
-            System.out.println("Panda leesett");
+            System.out.println("A Panda leesett");
 	}
         /**
          * 

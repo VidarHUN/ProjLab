@@ -29,7 +29,7 @@ public abstract class Moveable implements Element {
          * Ennek a metódusnak a polimorfizmus miatt van jelentősége.
 	 */
         @Override
-	public abstract void hitBy(Orangutan o);
+	public void hitBy(Orangutan o){}
 
 	/**
 	 * 
@@ -37,7 +37,7 @@ public abstract class Moveable implements Element {
          * Ennek a metódusnak a polimorfizmus miatt van jelentősége.
 	 */
         @Override
-	public abstract void hitBy(Panda p);
+	public void hitBy(Panda p){}
 
 	/**
 	 * 
