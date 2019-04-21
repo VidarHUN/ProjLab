@@ -1,8 +1,10 @@
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Orangutan extends Moveable{
  
     private int points = 0;
+    private List<Panda> pandas = new ArrayList<Panda>();
 
 	/**
 	 * 
@@ -37,21 +39,23 @@ public class Orangutan extends Moveable{
          * Ez a metódus az orangután sorához hozzáadja a paraméterben megkapott pnadát.
 	 */
 	public void add(Panda pnd) {
-		if(holdsPanda != null){
-                    holdsPanda.setHeldByMoveable(pnd);
-                    pnd.setHoldsPanda(holdsPanda);
-                }
-                holdsPanda = pnd;
-                holdsPanda.setHeldByMoveable(this);
-                holdsPanda.setFree(false);
-		System.out.println("Panda hozzáadva a sorhoz");
+        if (pandas.size() == 0){
+            pandas.add(pnd);
+        } else {
+            pnd.setHoldsPanda(pandas.get(pandas.size() - 1));
+            pandas.add(pnd);
+        }
 	}
         
         //Azt az eseményt kezeli le, amikor orangután ütközik valami mással
-        @Override
-        public void collideWith(Element lmnt){
-            lmnt.hitBy(this);
-        }
+    @Override
+    public void collideWith(Element lmnt){
+        lmnt.hitBy(this);
+    }
+
+    public void letOff(){
+	    pandas.get(0).breakOut();
+    }
 
     @Override
     public void hitBy(Orangutan o) {}

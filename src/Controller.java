@@ -1,5 +1,7 @@
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Controller {
     
@@ -8,9 +10,19 @@ public class Controller {
     private static boolean endGame;
     
     private static Clock clock = new Clock();
-    private static Orangutan orangutan = new Orangutan();
-    private static ArrayList<Panda> pandas = new ArrayList<Panda>();
-    private static ArrayList<Tile> tiles = new ArrayList<Tile>();
+
+    //Átalakítottam a sima listeket mapre, hogy név szerint lehessen keresni objektumokat
+    //Pandák tárolása
+    private static Map<String, Panda> pandas = new HashMap<String, Panda>();
+
+    //A csempéket tárolja
+    private static Map<String, Tile> tiles = new HashMap<String, Tile>();
+
+    //Az orángutánokat tárolja
+    private static Map<String, Orangutan> orangutans = new HashMap<String, Orangutan>(2);
+
+    //Minden elemet tárolja
+    private static Map<String, Element> elements = new HashMap<String, Element>();
     
     //Alapértelmezett konstruktor
     private Controller(){}
@@ -18,13 +30,9 @@ public class Controller {
     public static Controller getInstance(){
         return INSTANCE;
     }
-    //beállítja az orangután attribútumot
-    public void setOrangutan(Orangutan ogtn){
-        orangutan = ogtn;
-    }
     
     //visszaadja az orangután attribútumot
-    public Orangutan getOrangutan(){return orangutan;}
+    //public Orangutan getOrangutan(){return orangutan;}
     
     //Elindítja a játékot.
     public void startGame() {
@@ -76,23 +84,160 @@ public class Controller {
         return clock;
     }
     
-    //hozzáad egy csempét a játékhoz
-    public void addTile(Tile tl){
-        tiles.add(tl);
-    }
-    
     //visszaadja az összes csempét
-    public ArrayList<Tile> getTiles(){
+    public Map<String, Tile> getTiles(){
         return tiles;
-    }
-    
-    //hozzáad egy új pandát a játékhoz
-    public void addPanda(Panda pnd){
-        pandas.add(pnd);
     }
 
     //elvesz egy pandát a játékból
     public void removePanda(Panda pnd) {
         pandas.remove(pnd);
+    }
+
+    /**
+     * Hozzáad egy megfelelő objektumot ahhoz a listához, mihez tartozik
+     *
+     * Vannak bennne a kiíratások, amik csak teszteléshez kellettek
+     *
+     * @param tmp   Az átadandó objektum
+     * @param name  Az átandó objektm neve
+     */
+    public void add(Object tmp, String name) {
+        if (tmp instanceof Orangutan){
+            orangutans.put(name, (Orangutan) tmp);
+            System.out.println(orangutans.size() + " orangutans");
+        } else if (tmp instanceof Panda){
+            pandas.put(name, (Panda)tmp);
+            System.out.println(pandas.size() + " pandas");
+        } else if (tmp instanceof  Element){
+            elements.put(name, (Element)tmp);
+            System.out.println(elements.size() + " elements");
+        } else if (tmp instanceof Tile){
+            tiles.put(name, (Tile)tmp);
+            System.out.println(tiles.size() + " tiles");
+        }
+    }
+
+    /**
+     * Keresés a listákban
+     *
+     * @param tmp   A kinyerendő objektum neve (kulcsa)
+     * @return A megtalált objektum
+     */
+    public Object search(String tmp){
+        if ((tiles.get(tmp)) != null){
+            return tiles.get(tmp);
+        } else if ((elements.get(tmp)) != null){
+            return elements.get(tmp);
+        } else if ((pandas.get(tmp)) != null){
+             return pandas.get(tmp);
+        } else if ((orangutans.get(tmp)) != null){
+            return orangutans.get(tmp);
+        }
+        return null;
+    }
+
+    /**
+     * Ezel lehet elemeket összekapcsolni
+     *
+     * @param first Kit akarunk összekötni
+     * @param side  Ha csempéről van szó, akkor lehet neki szomszédirányt adni
+     * @param second    Mivel akarjuk összekötni
+     */
+    public void connect(String first, int side, String second){
+        Object mit = search(first);
+        Object kivel = search(second);
+        if (mit instanceof Panda && kivel instanceof Moveable){
+            ((Panda)mit).setHeldByMoveable((Moveable)kivel);
+        } else if (mit instanceof Panda && kivel instanceof Panda){
+            ((Panda)mit).setHoldsPanda((Panda)kivel);
+        } else if (mit instanceof Tile){
+            ((Tile)mit).setNeighborAt(side, (Tile)kivel);
+        } else if (mit instanceof Cupboard){
+            ((Cupboard)mit).setPair((Cupboard)kivel);
+        } else {
+            System.err.println("Nem jó");
+        }
+    }
+
+    /**
+     * Ellehet helyezni egy objektumot a csempén
+     *
+     * @param first Az jelzi, hogy mit akarunk elhelyezni
+     * @param second    Hogy min akarjuk elhelyezni
+     */
+
+    public void place(String first, String second){
+        Object mit = search(first);
+        Object min = search(second);
+        if (mit instanceof Element){
+            ((Tile)min).setElement((Element) mit);
+        } else if (mit instanceof Moveable){
+            ((Tile)min).setMoveable((Moveable)mit);
+        } else {
+            System.err.println("Nem jó");
+        }
+    }
+
+    /**
+     * Ezzel lehet elkapni egy orangutánnal egy pandát
+     *
+     * @param orangutan Az orangutén neve
+     * @param panda A panda neve
+     */
+    public void grab(String orangutan, String panda){
+        Orangutan oTmp = orangutans.get(orangutan);
+        oTmp.setHoldsPanda(pandas.get(panda));
+    }
+
+    /**
+     * Bármilyen mozdítható elemet mozdít egy irányba
+     *
+     * @param moveable  A mozgatható objektum neve
+     * @param idx   A mozgási irány
+     */
+    public void move(String moveable, int idx){
+        Object tmp = search(moveable);
+        ((Moveable)tmp).move(idx);
+    }
+
+    /**
+     * Arra való, hogy sípoljon a csokiautómata
+     *
+     * @param chocoMachine  A csokiautómanta neve
+     */
+    public void pipe(String chocoMachine){
+        Object tmp = elements.get(chocoMachine);
+        ((ChocoMachine)tmp).invertPiped();
+    }
+
+    /**
+     * Arra való, hogy csilingeljen a játékautómata
+     *
+     * @param gameMachine   A csokiautómata neve
+     */
+    public void jingle(String gameMachine){
+        Object tmp = elements.get(gameMachine);
+        ((GameMachine)tmp).invertJingled();
+    }
+
+    /**
+     * A panda ugrása való függvény
+     *
+     * @param panda Az ugrani képes panda neve
+     */
+    public void jump(String panda){
+        Object tmp = pandas.get(panda);
+        ((PipingFearPanda) tmp).jump();
+    }
+
+    /**
+     * Az orangután elengedi az összes pandáját
+     *
+     * @param orangutan Az orangután neve
+     */
+    public void letGo(String orangutan){
+        Object tmp = orangutans.get(orangutan);
+        ((Orangutan)tmp).letOff();
     }
 }

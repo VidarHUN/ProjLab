@@ -11,12 +11,16 @@
 public class Exit implements Element {
     
     //Tárolja, hogy melyik csempe jelképezi a játékmezőn a bejáratot.
-    private final Tile entrance;
+    private Tile entrance;
     
     public Exit(Tile ent){
-        entrance = ent;
+        this.entrance = ent;
     }
-    
+
+    public Exit() {
+
+    }
+
     //Ez a metódus visszaadja a bejárati csempét
     public Tile getEntrance(){
         return entrance;

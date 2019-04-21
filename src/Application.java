@@ -1,28 +1,31 @@
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Application {
     
-	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	static String line;
-        static Orangutan ogtn;
-        static Moveable firstMvbl;
-        static Moveable secondMvbl;
-        static SleepyPanda sp;
-        static JingleFearPanda jfp;
-        static PipingFearPanda pfp;
-        static Tile tl1;
-        static Tile tl2;
-        static Exit exit;
-        static Element lmnt;
-        static int idx;
-        static Controller instance = Controller.getInstance();
-    
-	public static void main(String[] args) throws IOException {
+	private static BufferedReader br;
+
+	//Oldalak száma.
+	private static int sidesNumber;
+    private static int idx;
+    private static Controller instance = Controller.getInstance();
+
+    //Első szintű kiíratás
+    private static String first = "Test successful";
+
+    //Második szintű kiíratás
+    private static List<String> second = new ArrayList<String>();
+
+    //Harmadik szintű kiíratás
+    private static List<String> third = new ArrayList<String>();
+
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
+            System.out.println("Kérem adjon meg teszteseteket");
+            readingTest();
+            /*
             while(true){
                 nullAttributes();
                 ArrayList<String> params = readParams();
@@ -31,8 +34,191 @@ public class Application {
                 setAttributes(params);
                 test();
             }
+            */
+           System.out.println("Hello World");
 		
-    }   //MAIN VÉGE
+    }
+
+    /**
+     * Egy olyan függvény, aminek egy útvonalat lehet megadni, hogy hol van a tesztelni kívánt fájl.
+     *
+     * @param path Az elérés útvonala
+     * @return Egy olyan listával tér vissza, amiben a kimenetek vannnak tárolva.
+     * @throws IOException
+     */
+
+    private static void readingTestFiles(String path) throws IOException, ClassNotFoundException {
+	    br = new BufferedReader(new FileReader(path));
+	    String line;
+	    while ((line = br.readLine()) != null){
+	        String[] elements = line.split(" ");
+	        switch (elements[0].toLowerCase()){
+                case "load":
+                    readingTestFiles(path);
+                    break;
+                case "setside":
+                    sidesNumber = Integer.parseInt(elements[1]);
+                    break;
+                case "random":
+                    break;
+                case "create":
+                    instance.add(typeDecider(elements[1]), elements[2]);
+                    break;
+                case "connect":
+                    instance.connect(elements[1], Integer.parseInt(elements[2]), elements[3]);
+                    break;
+                case "place":
+                    instance.place(elements[1], elements[2]);
+                    break;
+                case "catch":
+                    instance.grab(elements[1], elements[2]);
+                    break;
+                case "endcreate":
+                    break;
+                case "move":
+                    instance.move(elements[1], Integer.parseInt(elements[2]));
+                    break;
+                case "jingle":
+                    instance.jingle(elements[1]);
+                    break;
+                case "pipe":
+                    instance.pipe(elements[1]);
+                    break;
+                case "jump":
+                    instance.jump(elements[1]);
+                    break;
+                case "letgo":
+                    instance.letGo(elements[1]);
+                    break;
+                case "save":
+                    save(Integer.parseInt(elements[1]), elements[2]);
+                    break;
+                default:
+                    System.out.println("Valahol hibás volt a kiadott parancs így nem hajtható végre!");
+            }
+        }
+    }
+
+    /**
+     * Ez a függvény felel a konzolos bemenetért.
+     * A kiíratások azért szerepelnek benne, hogy ellenőrizhető legyen, hogy mi fut le
+     *
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+
+    private static void readingTest() throws IOException, ClassNotFoundException {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        String line;
+        while ((line = br.readLine()) != null){
+            String[] elements = line.split(" ");
+            switch (elements[0].toLowerCase()){
+                case "load":
+                    readingTestFiles(elements[1]);
+                    break;
+                case "setside":
+                    sidesNumber = Integer.parseInt(elements[1]);
+                    System.out.println(sidesNumber);
+                    break;
+                case "random":
+                    break;
+                case "create":
+                    instance.add(typeDecider(elements[1]), elements[2]);
+                    System.out.println("OK");
+                    break;
+                case "connect":
+                    instance.connect(elements[1], Integer.parseInt(elements[2]), elements[3]);
+                    System.out.println("OK");
+                    break;
+                case "place":
+                    instance.place(elements[1], elements[2]);
+                    System.out.println("OK");
+                    break;
+                case "catch":
+                    instance.grab(elements[1], elements[2]);
+                    System.out.println("OK");
+                    break;
+                case "endcreate":
+                    System.out.println("OK");
+                    break;
+                case "move":
+                    instance.move(elements[1], Integer.parseInt(elements[2]));
+                    System.out.println("OK");
+                    break;
+                case "jingle":
+                    instance.jingle(elements[1]);
+                    System.out.println("OK");
+                    break;
+                case "pipe":
+                    instance.pipe(elements[1]);
+                    System.out.println("OK");
+                    break;
+                case "jump":
+                    instance.jump(elements[1]);
+                    System.out.println("OK");
+                    break;
+                case "letgo":
+                    instance.letGo(elements[1]);
+                    System.out.println("OK");
+                    break;
+                case "save":
+                    save(Integer.parseInt(elements[1]), elements[2]);
+                    System.out.println("OK");
+                    break;
+                default:
+                    System.out.println("Valahol hibás volt a kiadott parancs így nem hajtható végre!");
+            }
+        }
+    }
+
+    /**
+     * Ezt terveztem arra, hogy kiírassa fájlba a tesztek lefutását.
+     *
+     * @param level
+     * @param path
+     */
+
+    public static void save(int level, String path){
+
+    }
+
+    /**
+     * A megadott stringből eldönti, hogy milyen típusú objektumot kell létrehoznia.
+     *
+     * @param type A konzolról vagy fájlból megkapott osztály neve.
+     * @return A visszatérése egy olyan osztályú objektum, ami meglett adva paraméterként.
+     */
+
+    public static Object typeDecider(String type){
+        switch (type.toLowerCase()){
+            case "armchair":
+                return new Armchair();
+            case "breakabletile":
+                return new BreakableTile();
+            case "chocomachine":
+                return new ChocoMachine();
+            case "cupboard":
+                return new Cupboard();
+            case "exit":
+                return new Exit();
+            case "gamemachine":
+                return new GameMachine();
+            case "jinglefearpanda":
+                return new JingleFearPanda();
+            case "orangutan":
+                return new Orangutan();
+            case "pipingfearpanda":
+                return new PipingFearPanda();
+            case "sleepypanda":
+                return new SleepyPanda();
+            case "tile":
+                return new Tile();
+            default:
+                return null;
+        }
+    }
+    /*
+    //MAIN VÉGE
         //megvalósítja a teszteket
         static void test(){
             tl1.setNeighborAt(idx, tl2);
@@ -274,4 +460,6 @@ public class Application {
 	static void readLine() throws IOException {
 		line = br.readLine();
 	}   //READLINE VÉGE
+
+     */
 }
