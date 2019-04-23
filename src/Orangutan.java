@@ -4,6 +4,7 @@ import java.util.List;
 public class Orangutan extends Moveable{
  
     private int points = 0;
+    private int cancatch = 0;
     private List<Panda> pandas = new ArrayList<Panda>();
 
 	/**
@@ -58,8 +59,32 @@ public class Orangutan extends Moveable{
     }
 
     @Override
-    public void hitBy(Orangutan o) {}
+    public void hitBy(Orangutan o) {
+        if(o.getCanCatch()==0)
+            o.steal(this);
+    }
 
     @Override
     public void hitBy(Panda p) {}
+    
+    /**
+     * 
+     * @param o 
+     */
+    public void steal(Orangutan o){
+        
+    }
+    
+    @Override
+    public void move(int idx) {
+        if (cancatch > 0)
+            cancatch--;
+        Tile oldTile = getTile();
+        getTile().getNeighbor(idx).accept(this);
+        if(holdsPanda != null) holdsPanda.follow(oldTile);
+    }
+    
+    public int getCanCatch(){
+        return cancatch;
+    }
 }
