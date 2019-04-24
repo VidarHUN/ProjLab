@@ -37,4 +37,9 @@ public class GameMachine implements Element, Steppable {
     //Játékgép nem ütközhet semmibe.
     @Override
     public void collideWith(Element e) { }
+
+    //Beállítja a tile attribútumot az argumentumként kapott tl-re.
+    public void setTile(Tile tl){
+        tile = tl;
+    }
 }

@@ -60,6 +60,11 @@ public class Cupboard implements Element {
     public Tile getTile(){
         return tile;
     }
+
+    //Beállítja a tile attribútumot az argumentumként kapott tl-re.
+    public void setTile(Tile tl){
+        tile = tl;
+    }
     
     //Szekrény nem ütközhet semmivel.
     @Override

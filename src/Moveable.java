@@ -67,26 +67,26 @@ public abstract class Moveable implements Element {
                 else return holdsPanda.count(c + 1);
 	}
 
-        // Visszaadja a tile attribútumot.
+	// Visszaadja a tile attribútumot.
 	public Tile getTile() {
 		return tile;
 	}
         
-        //Beállítja a tile attribútumot az argumentumként kapott tl-re.
-        public void setTile(Tile tl){
-            tile = tl;
-        }
+	//Beállítja a tile attribútumot az argumentumként kapott tl-re.
+	public void setTile(Tile tl){
+		tile = tl;
+	}
 
-        //Ez a metódus a leesést kezeli.
+	//Ez a metódus a leesést kezeli.
 	public abstract void fall();
 
-        //Ez a metódus leveszi a pandát 
+	//Ez a metódus leveszi a pandát
 	public void leave() {
 		tile.remove();
 	}
         
-        //Visszaadja a holdaPanda attribútum értékét.
-        public Panda getHoldsPanda() {
+	//Visszaadja a holdaPanda attribútum értékét.
+	public Panda getHoldsPanda() {
             return holdsPanda;
         }
 }
