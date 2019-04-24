@@ -30,7 +30,7 @@ public class Orangutan extends Moveable{
         
         @Override
 	public void fall() {
-            Controller.getInstance().endGame();
+            Controller.endGame();
 	    System.out.println("Orangután leesett.");
 	}
 

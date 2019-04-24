@@ -1,11 +1,8 @@
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Controller {
-    
-    private static final Controller INSTANCE = new Controller();
     
     private static boolean endGame;
     
@@ -25,12 +22,8 @@ public class Controller {
     private static Map<String, Element> elements = new HashMap<String, Element>();
     
     //Alapértelmezett konstruktor
-    private Controller(){}
-    
-    public static Controller getInstance(){
-        return INSTANCE;
-    }
-    
+    Controller(){}
+
     //visszaadja az orangután attribútumot
     //public Orangutan getOrangutan(){return orangutan;}
     
@@ -70,7 +63,7 @@ public class Controller {
     }
 
     //Lezárja a játékot
-    public void endGame() {
+    public static void endGame() {
         endGame = true;
     }
     
@@ -90,7 +83,7 @@ public class Controller {
     }
 
     //elvesz egy pandát a játékból
-    public void removePanda(Panda pnd) {
+    public static void removePanda(Panda pnd) {
         pandas.remove(pnd);
     }
 

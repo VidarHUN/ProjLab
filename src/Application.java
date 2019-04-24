@@ -11,7 +11,7 @@ public class Application {
 	//Oldalak száma.
 	private static int sidesNumber;
     private static int idx;
-    private static Controller instance = Controller.getInstance();
+    private static Controller instance = new Controller();
 
     //Első szintű kiíratás
     private static String first = "Test successful";
