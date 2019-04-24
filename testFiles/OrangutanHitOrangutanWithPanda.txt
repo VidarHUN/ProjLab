@@ -1,0 +1,16 @@
+SetSide 4
+Random off
+Create Tile Tile1
+Create Tile Tile2
+Create Tile Tile3
+Create Orangutan Orangutan1
+Create Orangutan Orangutan2
+Create SleepyPanda Panda
+Connect Tile1 3 Tile2
+Connect Tile2 3 Tile3
+Place Panda Tile1
+Place Orangutan1 Tile2
+Place Orangutan2 Tile3
+Connect Orangutan2 Panda
+EndCreate
+Move Orangutan1 3

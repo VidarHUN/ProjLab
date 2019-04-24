@@ -1,0 +1,11 @@
+SetSide 4
+Random off
+Create Tile Tile1
+Create Tile Tile2
+Create SleepyPanda Panda
+Create ChocoMachine ChocoMachine
+Connect Tile1 2 Tile2
+Place Panda Tile1
+Place ChocoMachine Tile2
+EndCreate
+Move Panda 2

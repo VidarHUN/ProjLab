@@ -1,0 +1,8 @@
+SetSide 3
+Create Tile empty
+Create Tile cmTile
+Create ChocoMachine cm
+Place cm cmTile
+Connect empty 0 cmTile
+EndCreate
+Pipe empty

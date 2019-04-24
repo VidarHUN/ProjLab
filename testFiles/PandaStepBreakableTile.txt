@@ -1,0 +1,9 @@
+SetSide 4
+Random off
+Create Tile Tile1
+Create BreakableTile Tile2
+Create SleepyPanda Panda
+Connect Tile1 1 Tile2
+Place Panda Tile1
+EndCreate
+Move Panda 1

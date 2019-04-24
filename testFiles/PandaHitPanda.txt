@@ -1,0 +1,10 @@
+SetSide 3
+Create Tile slpTile
+Create Tile pndTile
+Create SleepyPanda slp
+Create SleepyPanda sp
+Place slp slpTile
+Place sp pndTile
+Connect pndTile 0 slpTile
+EndCreate
+Move sp 0

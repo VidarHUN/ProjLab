@@ -1,0 +1,9 @@
+SetSide 4
+Random off
+Create Tile1 
+Create Tile2 20
+Create Orangutan Orangutan1
+Connect Tile1 1 Tile2
+Place Orangutan1 Tile1
+EndCreate 
+Move Orangutan1 1

@@ -1,0 +1,14 @@
+SetSide 4
+Random off
+Create Tile1 
+Create Tile2 
+Create Tile3 20
+Create Orangutan Orangutan1
+Create JingleFearPanda JFPanda
+Connect Tile1 1 Tile2
+Connect Tile2 2 Tile3
+Place Orangutan1 Tile1
+Place JFPanda Tile2
+EndCreate 
+Catch Orangutan1 JFPanda
+Move Orangutan1 2

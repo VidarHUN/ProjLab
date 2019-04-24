@@ -1,0 +1,11 @@
+SetSide 4
+Random off
+Create Tile Tile1
+Create Tile Tile2
+Create Orangutan Orangutan
+Create GameMachine GameMachine
+Connect Tile1 2 Tile2
+Place Orangutan Tile1
+Place GameMachine Tile2
+EndCreate
+Move Orangutan 2

@@ -1,0 +1,10 @@
+SetSide 3
+Create Tile oTile
+Create Tile pndTile
+Create Orangutan ogtn
+Create SleepyPanda sp
+Place ogtn oTile
+Place sp pndTile
+Connect pndTile 0 oTile
+EndCreate
+Move sp 0

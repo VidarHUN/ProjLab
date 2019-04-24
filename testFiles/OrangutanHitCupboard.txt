@@ -1,0 +1,18 @@
+SetSide 4
+Random off
+Create Tile Tile1
+Create Tile Tile2
+Create Tile Tile3
+Create Tile Tile4
+Create Orangutan Orangutan
+Create Cupboard Cupboard1
+Create Cupboard Cupboard2
+Connect Tile1 2 Tile2
+Connect Tile2 2 Tile3
+Connect Tile3 3 Tile4
+Connect Cupboard1 Cupboard2
+Place Orangutan Tile1
+Place Cupboard1 Tile2
+Place Cupboard2 Tile3
+EndCreate
+Move Orangutan 2

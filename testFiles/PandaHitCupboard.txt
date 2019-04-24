@@ -1,0 +1,16 @@
+Create Tile t1
+Create Tile t2
+Create Tile t3
+Create Tile t4
+Create Tile
+Create Cupboard c1
+Create Cupboard c2
+Create SleepyPanda sp
+Place c1 t1
+Place c2 t2
+Place sp t3
+Connect c1 c2
+Connect t1 0 t3
+Connect t2 0 t4
+EndCreate
+Move sp t1

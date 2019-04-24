@@ -1,0 +1,12 @@
+SetSide 4
+Create Tile nearTile
+Create Tile pndTile
+Create Tile acTile
+Create Armchair ac
+Create SleepyPanda sp
+Connect pndTile 0 nearTile
+Connect nearTile 0 acTile
+Place ac acTile
+Place sp pndTile
+EndCreate
+Move sp 0

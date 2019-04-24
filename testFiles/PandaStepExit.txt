@@ -1,0 +1,11 @@
+SetSide 4
+Random off
+Create Tile Tile1
+Create Tile Tile2
+Create SleepyPanda Panda
+Create Exit Exit
+Connect Tile1 1 Tile2
+Place Panda Tile1
+Place Exit Tile2
+EndCreate
+Move Panda 1

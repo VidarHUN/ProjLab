@@ -1,0 +1,13 @@
+SetSide 4
+Create Tile initTile
+Create BreakableTile emptyTile
+Create Tile cmTile
+Create PipingFearrPanda pfp
+Create ChocoMachine cm
+Place pfp initTile
+Place cm cmTile
+Connect initTile 0 emptyTile
+Connect emptyTile 0 cmTile
+EndCreate
+Pipe cm
+Move pfp emptyTile

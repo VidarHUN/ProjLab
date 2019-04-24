@@ -1,0 +1,11 @@
+SetSide 4
+Random off
+Create Tile1 
+Create Tile2 
+Create Orangutan Orangutan1
+Create SleepyPanda SPanda
+Connect Tile1 1 Tile2
+Place Orangutan1 Tile1
+Place SPanda Tile2
+EndCreate 
+Catch Orangutan1 SPanda

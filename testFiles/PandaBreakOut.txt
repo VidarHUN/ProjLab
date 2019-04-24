@@ -1,0 +1,23 @@
+SetSide 4
+Create oTile
+Create jfpTile
+Create spTile
+Create gcTile
+Create emptyTile
+Create JingleFearPanda jfp
+Create SleepyPanda sp
+Create Orangutan ogtn
+Create GameMachine gc
+Connect oTile 0 jfpTile
+Connect spTile 0 spTile
+Connect oTile 0 gcTile
+Connect oTile 1 emptyTile
+Place ogtn oTile
+Place jfp jfpTile
+Place sp spTile
+Place gc gcTile
+Connect ogtn jfp
+Connect jfp sp
+EndCreate
+Jingle gc
+Move ogtn emptyTile

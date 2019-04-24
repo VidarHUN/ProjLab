@@ -1,0 +1,6 @@
+SetSide 4
+Create Tile t1
+Create SleepyPanda pd
+Place pd t1
+EndCreate
+Random on

@@ -1,0 +1,8 @@
+SetSide 3
+Create Tile empty
+Create Tile gmTile
+Create GameMachine gm
+Place gm gmTile
+Connect empty 0 cmTile
+EndCreate
+Pipe empty

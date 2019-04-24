@@ -1,0 +1,23 @@
+SetSide 4
+Random off
+Create Tile Tile1
+Create Tile Tile2
+Create Tile Tile3 
+Create Tile Tile4
+Create Tile Tile5
+Create Orangutan Orangutan
+Create SleepyPanda SPanda
+Create Cupboard Cupboard1
+Create Cupboard Cupboard2
+Connect Tile1 2 Tile2
+Connect Tile2 2 Tile3
+Connect Tile3 2 Tile4
+Connect Tile4 3 Tile5
+Connect Cupboard1 Cupboard2
+Place Orangutan Tile1
+Place SPanda Tile2
+Place Cupboard1 Tile3
+Place Cupboard2 Tile4
+EndCreate
+Catch SPanda Orangutan
+Move Orangutan 2
