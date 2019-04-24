@@ -14,7 +14,7 @@ public class ChocoMachine implements Element, Steppable{
     private Tile tile;
     
     //Meghívja a csempére azt a függvényt, amely invertálja a szomszédos csempék piped változóját.
-    public void invertPiped() {
+    void invertPiped() {
         tile.invertNeighborsPiped();
     }
     

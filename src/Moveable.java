@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author ricsi
- */
 public abstract class Moveable implements Element {
  
-    protected Panda holdsPanda;
+    Panda holdsPanda;
     private Tile tile;
     /**
 	 * 
@@ -52,7 +43,7 @@ public abstract class Moveable implements Element {
 	 * @param pnd Új panda
          * Beállítja az aktuális objektum holdsPanda attribútumát a paraméterben kapottra.
 	 */
-	public void setHoldsPanda(Panda pnd) {
+	void setHoldsPanda(Panda pnd) {
 		holdsPanda = pnd;
 	}
 
@@ -62,7 +53,7 @@ public abstract class Moveable implements Element {
          * Er a rekurzív metódus arra jó, hogy megszámolja hány darab panda van egy sorban.
      * @return int
 	 */
-	public int count(int c) {
+	int count(int c) {
 		if(holdsPanda == null) return c + 1;
                 else return holdsPanda.count(c + 1);
 	}
@@ -81,12 +72,12 @@ public abstract class Moveable implements Element {
 	public abstract void fall();
 
 	//Ez a metódus leveszi a pandát
-	public void leave() {
+	void leave() {
 		tile.remove();
 	}
         
 	//Visszaadja a holdaPanda attribútum értékét.
-	public Panda getHoldsPanda() {
+	Panda getHoldsPanda() {
             return holdsPanda;
         }
 }

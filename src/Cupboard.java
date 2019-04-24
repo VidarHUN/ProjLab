@@ -29,7 +29,7 @@ public class Cupboard implements Element {
     }
     
     //Ez a metódus beállítja a pair értékét a paraméterben megkapott értékre.
-    public void setPair(Cupboard p){
+    void setPair(Cupboard p){
         pair = p;
     }
     
@@ -51,7 +51,7 @@ public class Cupboard implements Element {
     }
     
     //Áthelyezi a moveablet a szekrény szomszédos csempék egyikére.
-    public void teleportTo(Moveable mvbl) {
+    private void teleportTo(Moveable mvbl) {
         tile.placeMoveableOnNeighbor(mvbl);
         System.out.println("Moveable Teleportált");
     }
