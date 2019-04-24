@@ -58,37 +58,49 @@ public class Application {
                     break;
                 case "setside":
                     sidesNumber = Integer.parseInt(elements[1]);
+                    second.add("SetSide "+elements[1] +" successful");
                     break;
                 case "random":
+                    second.add("Random "+elements[1] +" successful");
                     break;
                 case "create":
                     instance.add(typeDecider(elements[1]), elements[2]);
+                    second.add("Create "+elements[1]+" "+elements[2] +" successful");
                     break;
                 case "connect":
                     instance.connect(elements[1], Integer.parseInt(elements[2]), elements[3]);
+                    second.add("Connect "+elements[1]+" "+elements[2]+" "+elements[3] +" successful");
                     break;
                 case "place":
                     instance.place(elements[1], elements[2]);
+                    second.add("Place "+elements[1]+" "+elements[2] +" successful");
                     break;
                 case "catch":
                     instance.grab(elements[1], elements[2]);
+                    second.add("Catch "+elements[1]+" "+elements[2] +" successful");
                     break;
                 case "endcreate":
+                    second.add("EndCreate successful");
                     break;
                 case "move":
                     instance.move(elements[1], Integer.parseInt(elements[2]));
+                    second.add("Move "+elements[1]+" "+elements[2] +" successful");
                     break;
                 case "jingle":
                     instance.jingle(elements[1]);
+                    second.add("Jingle "+elements[1]+" successful");
                     break;
                 case "pipe":
                     instance.pipe(elements[1]);
+                    second.add("Pipe "+elements[1]+" successful");
                     break;
                 case "jump":
                     instance.jump(elements[1]);
+                    second.add("Jump "+elements[1]+" successful");
                     break;
                 case "letgo":
                     instance.letGo(elements[1]);
+                    second.add("LetGo "+elements[1]+" successful");
                     break;
                 case "save":
                     save(Integer.parseInt(elements[1]), elements[2]);
@@ -119,46 +131,58 @@ public class Application {
                 case "setside":
                     sidesNumber = Integer.parseInt(elements[1]);
                     System.out.println(sidesNumber);
+                    second.add("SetSide"+elements[1] +"successful");
                     break;
                 case "random":
+                    second.add("Random "+elements[1] +" successful");
                     break;
                 case "create":
                     instance.add(typeDecider(elements[1]), elements[2]);
+                    second.add("Create "+elements[1]+" "+elements[2] +" successful");
                     System.out.println("OK");
                     break;
                 case "connect":
                     instance.connect(elements[1], Integer.parseInt(elements[2]), elements[3]);
+                    second.add("Connect "+elements[1]+" "+elements[2]+" "+elements[3] +" successful");
                     System.out.println("OK");
                     break;
                 case "place":
                     instance.place(elements[1], elements[2]);
+                    second.add("Place "+elements[1]+" "+elements[2] +" successful");
                     System.out.println("OK");
                     break;
                 case "catch":
                     instance.grab(elements[1], elements[2]);
+                    second.add("Catch "+elements[1]+" "+elements[2] +" successful");
                     System.out.println("OK");
                     break;
                 case "endcreate":
                     System.out.println("OK");
+                    second.add("EndCreate successful");
                     break;
                 case "move":
                     instance.move(elements[1], Integer.parseInt(elements[2]));
+                    second.add("Move "+elements[1]+" "+elements[2] +" successful");
                     System.out.println("OK");
                     break;
                 case "jingle":
                     instance.jingle(elements[1]);
+                    second.add("Jingle "+elements[1]+" successful");
                     System.out.println("OK");
                     break;
                 case "pipe":
                     instance.pipe(elements[1]);
+                    second.add("Pipe "+elements[1]+" successful");
                     System.out.println("OK");
                     break;
                 case "jump":
                     instance.jump(elements[1]);
+                    second.add("Jump "+elements[1]+" successful");
                     System.out.println("OK");
                     break;
                 case "letgo":
                     instance.letGo(elements[1]);
+                    second.add("LetGo "+elements[1]+" successful");
                     System.out.println("OK");
                     break;
                 case "save":
@@ -178,8 +202,21 @@ public class Application {
      * @param path
      */
 
-    public static void save(int level, String path){
-
+    public static void save(int level, String path) throws IOException{
+        BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+        if(level==1) {
+            writer.write(first);
+        }
+        if(level==2) {
+            for(int i = 0; i<second.size(); i++) {
+                writer.write(second.get(i));
+                writer.newLine();
+            }
+        }
+        if(level==3) {
+        }
+        second.clear();
+        writer.close();
     }
 
     /**
