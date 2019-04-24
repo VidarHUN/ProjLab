@@ -156,12 +156,12 @@ public class Controller {
         } else if (mit instanceof Cupboard){
             ((Cupboard)mit).setPair((Cupboard)kivel);
         } else {
-            System.err.println("Nem jó");
+            System.err.println("Nem jĂł");
         }
     }
 
     /**
-     * Ellehet helyezni egy objektumot a csempén
+     * Ellehet helyezni egy objektumot a csempĂ©n
      *
      * @param first Az jelzi, hogy mit akarunk elhelyezni
      * @param second    Hogy min akarjuk elhelyezni
@@ -170,12 +170,23 @@ public class Controller {
     public void place(String first, String second){
         Object mit = search(first);
         Object min = search(second);
-        if (mit instanceof Element){
+           if (mit instanceof Cupboard && min instanceof Tile){
             ((Tile)min).setElement((Element) mit);
+            ((Cupboard)mit).setTile((Tile)min);
+        }  else if (mit instanceof ChocoMachine && min instanceof Tile){
+            ((Tile)min).setElement((Element) mit);
+            ((ChocoMachine)mit).setTile((Tile)min);
+        }  else if (mit instanceof GameMachine && min instanceof Tile){
+            ((Tile)min).setElement((Element) mit);
+            ((GameMachine)mit).setTile((Tile)min);
         } else if (mit instanceof Moveable){
             ((Tile)min).setMoveable((Moveable)mit);
+            ((Moveable)mit).setTile((Tile)min);
+        } else if (mit instanceof Element && min instanceof Tile){
+            ((Tile)min).setElement((Element) mit);
+            
         } else {
-            System.err.println("Nem jó");
+            System.err.println("Nem jĂł");
         }
     }
 
